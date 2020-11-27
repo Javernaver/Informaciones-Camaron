@@ -1,0 +1,15 @@
+<!--<form class="was-validated" [formGroup]="commentForm" (ngSubmit)="enviar(commentForm.value); commentForm.reset()">
+    <div class="mb-3">
+        <label for="validationTextarea">Deja tu comentario</label><br/>
+        <textarea class="form-control" formControlName="comment" placeholder="Escriba aqui su comentario..." required></textarea>
+        <div *ngIf="commentForm.get('comment').hasError('required') && commentForm.get('comment').touched">Por favor, escribe tu comentario</div><br/>
+        <button class="btn btn-primary float-right" [disabled]="commentForm.invalid" type="submit">Publicar Comentario</button>
+    </div>
+</form>-->
+
+
+
+<div id="comments">
+
+    <div class="fb-comments" data-href="" data-numposts="5" data-width=""></div>
+</div>

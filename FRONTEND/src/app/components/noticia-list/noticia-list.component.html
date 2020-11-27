@@ -1,0 +1,7 @@
+<div class="row m-3 d-flex justify-content-center">
+    <div class="" *ngFor="let noticia of noticias">
+        <ng-container *ngIf="noticia.categoria===categoria && noticia._id!==_id">
+            <app-card [noticia]="noticia"></app-card>
+        </ng-container>
+    </div>
+</div>

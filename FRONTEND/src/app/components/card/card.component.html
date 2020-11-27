@@ -1,0 +1,23 @@
+<div class="card m-2 border border-dark">
+    <ng-container *ngIf='noticia.imagenURL'>
+      <img width="400" height="190" src="{{noticia.imagenURL}}" class="card-img-top">
+    </ng-container>
+    <ng-container *ngIf='noticia.videoURL'>
+      <iframe width="285" height="190" [src]="getVideoIframe(noticia.videoURL)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </ng-container>
+    <ng-container *ngIf='noticia.audioURL'>
+      <iframe width="285" height="190" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/191576787&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+      <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+        <a href="https://soundcloud.com/levipatel" title="Levi Patel" target="_blank" style="color: #cccccc; text-decoration: none;"></a> 
+        <a href="https://soundcloud.com/levipatel/as-she-passes" title="As she passes" target="_blank" style="color: #cccccc; text-decoration: none;"></a>
+      </div>
+    </ng-container>
+    <ng-container *ngIf='!noticia.imagenURL && !noticia.videoURL && !noticia.audioURL'>
+      <img width="400" height="190" src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="card-img-top">
+    </ng-container>
+    <div class="card-body">
+      <h5 class="card-title module line-clamp">{{noticia.titulo}}</h5>
+      <p class="card-text module line-clamp">{{noticia.entradilla}}</p>
+      <a class="btn btn-primary btnCambioColor border border-dark" [routerLink]="['/inicio/noticia', noticia._id]">Ver Noticia</a>
+    </div>
+</div>

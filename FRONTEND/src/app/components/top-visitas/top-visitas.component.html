@@ -1,0 +1,87 @@
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div *ngFor = "let noticia of noticias">
+        <div *ngIf = "noticia.categoria == 'Coronavirus' && noticia.visitas >= topVisitas">
+          <div *ngIf = "noticia.imagenURL">
+            <img src="{{noticia.imagenURL}}" class="d-block w-100" alt="Noticia Mas Vista Coronavirus">
+          </div>
+          <div *ngIf = "!noticia.imagenURL">
+            <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="Noticia Mas Vista Coronavirus">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{noticia.titulo}}</h5>
+            <p>{{noticia.entradilla}}</p>
+            <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', noticia._id]">Ver Noticia</a>
+          </div>
+        <div ></div>
+        </div>
+      </div>  
+    </div>
+    <div class="carousel-item">
+      <div *ngFor = "let noticia of noticias">
+        <div *ngIf = "noticia.categoria == 'Nacional' && noticia.visitas >= topVisitas">
+          <div *ngIf = "noticia.imagenURL">
+            <img src="{{noticia.imagenURL}}" class="d-block w-100" alt="Noticia Mas Vista Nacional">
+          </div>
+          <div *ngIf = "!noticia.imagenURL">
+            <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="Noticia Mas Vista Nacional">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{noticia.titulo}}</h5>
+            <p>{{noticia.entradilla}}</p>
+            <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', noticia._id]">Ver Noticia</a>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <div class="carousel-item">
+      <div *ngFor = "let noticia of noticias">
+        <div *ngIf = "noticia.categoria == 'Internacional' && noticia.visitas >= topVisitas">
+          <div *ngIf = "noticia.imagenURL">
+            <img src="{{noticia.imagenURL}}" class="d-block w-100" alt="Noticia Mas Vista Internacional">
+          </div>
+          <div *ngIf = "!noticia.imagenURL">
+            <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="Noticia Mas Vista Internacional">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{noticia.titulo}}</h5>
+            <p>{{noticia.entradilla}}</p>
+            <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', noticia._id]">Ver Noticia</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div *ngFor = "let noticia of noticias">
+        <div *ngIf = "noticia.categoria == 'Deportes' && noticia.visitas >= topVisitas">
+          <div *ngIf = "noticia.imagenURL">
+            <img src="{{noticia.imagenURL}}" class="d-block w-100" alt="Noticia Mas Vista Deportes">
+          </div>
+          <div *ngIf = "!noticia.imagenURL">
+            <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="Noticia Mas Vista Deportes">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{noticia.titulo}}</h5>
+            <p>{{noticia.entradilla}}</p>
+            <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', noticia._id]">Ver Noticia</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

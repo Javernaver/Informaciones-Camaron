@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/inicio">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Modificar Noticia: {{noticia.titulo}}</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="containerfluid mt-3">
+    <legend>Modificar Noticia</legend>
+    <form class="was-validated" [formGroup]="alterNoticiaFormGroup" (ngSubmit)="alterNoticia(noticia._id)">
+
+        <label class="col-md-12 control-label" for="validationTextarea">Titulo de la Noticia</label><br>
+        <input type="text" class="form-control" formControlName="titulo" [ngModel]="noticia.titulo" required/>
+        <div id = "errorTipeado" *ngIf="alterNoticiaFormGroup.get('titulo').hasError('required') && alterNoticiaFormGroup.get('titulo').touched">El titulo no puede estar vacio!</div>
+        
+        <br>
+        
+        <label class="col-md-12 control-label" for="validationTextarea">Descripcion de la Noticia</label><br>
+        <input type="text" class="form-control" formControlName="entradilla" [ngModel]="noticia.entradilla" required/>
+        <div id = "errorTipeado" *ngIf="alterNoticiaFormGroup.get('entradilla').hasError('required') && alterNoticiaFormGroup.get('entradilla').touched">La descripcion no puede estar vacia!</div>
+        
+        <br>
+
+        <label class="col-md-12 control-label" for="validationTextarea">Link Imagen</label><br>
+        <input type="text" class="form-control" formControlName="imagenURL" [ngModel]="noticia.imagenURL"/>
+        <br>
+
+        <label class="col-md-12 control-label" for="validationTextarea">Link Video</label><br>
+        <input type="text" class="form-control" formControlName="videoURL" [ngModel]="noticia.videoURL"/>
+        <br>
+
+        <label class="col-md-12 control-label" for="validationTextarea">Link Audio</label><br>
+        <input type="text" class="form-control" formControlName="audioURL" [ngModel]="noticia.audioURL"/>
+        <br>
+
+        <label class="col-md-12 control-label" for="validationTextarea">Cuerpo de la Noticia</label><br>
+        <textarea class="form-control" id="cuerpo" formControlName="cuerpo" [ngModel]="noticia.cuerpo" required></textarea>
+        <div id = "errorTipeado" *ngIf="alterNoticiaFormGroup.get('cuerpo').hasError('required') && alterNoticiaFormGroup.get('cuerpo').touched">El cuerpo de la noticia no puede estar vacia!</div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="col-md-1 control-label">Privacidad</label>
+                <div class="col-md-9">
+                    <div class="mb-3">
+                        <select class="custom-select"  formControlName="privado" [ngModel]="noticia.privado" required>
+                            <option value="">--Seleccione la privacidad de la noticia--</option>
+                            <option value="1">Publico</option>
+                            <option value="2">Privado</option>
+                        </select>
+                        <div id = "errorTipeado" *ngIf="alterNoticiaFormGroup.get('privado').hasError('required') && alterNoticiaFormGroup.get('privado').touched">Debes seleccionar la privacidad!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="col-md-1 control-label">Categoria</label>
+                <div class="col-md-9">
+                    <div class="mb-3">
+                        <select class="custom-select"  formControlName="categoria" [ngModel]="noticia.categoria" required>
+                            <option value="">--Seleccione categoria de noticia--</option>
+                            <option value="Coronavirus">Coronavirus</option>
+                            <option value="Nacional">Nacional</option>
+                            <option value="Internacional">Internacional</option>
+                            <option value="Deportes">Deportes</option>
+                        </select>
+                        <div id = "errorTipeado" *ngIf="alterNoticiaFormGroup.get('categoria').hasError('required') && alterNoticiaFormGroup.get('categoria').touched">Debes seleccionar una categoria!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-warning" [disabled]="alterNoticiaFormGroup.invalid" type="submit">Modificar Noticia</button>
+                <input class="btn btn-primary btnCambioColor m-2" onclick="location.href='/inicio/periodista';" id="cancelar" name="cancelar" value="Cancelar">
+            </div>
+        </div>        
+    </form>
+</div>

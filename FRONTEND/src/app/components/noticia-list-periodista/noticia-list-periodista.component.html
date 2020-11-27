@@ -1,0 +1,7 @@
+<ul class = "list-group">
+    <li class="list-group-item" *ngFor = "let noticia of noticias">
+        {{noticia.createdAt | date: 'short'}} <br> {{noticia.titulo}} <br>
+        <a class="btn btnCambioColor border border-dark m-2" role="button" (click)="deleteNoticia(noticia._id, noticia.titulo)">Eliminar</a>
+        <a class="btn btnCambioColor border border-dark m-2" role="button" [routerLink]="['/inicio/alterNoticia', noticia._id]">Modificar</a>
+    </li>
+</ul>

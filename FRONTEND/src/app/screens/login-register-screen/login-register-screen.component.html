@@ -1,0 +1,147 @@
+<!--Fontawesome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a id="migasPan" href="/inicio">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inicío Sesion & Registro</li>
+        </ol>
+    </nav>
+    <div class="row m-5">
+        <div class="col-md-6">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card" id="login">
+                    <div class="card-header">
+                        <h3>Inicio de Sesion</h3>
+                        <div class="d-flex justify-content-end social_icon">
+
+                            <span (click)="authenticate()"><i class="fab fa-google-plus-square" ></i></span>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="checkoutFormLogin" (ngSubmit)="onSubmitLogin()">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" formControlName="usuario" class="form-control" placeholder="ejemplo@ejemplo.com" id="usuario" name='usuario' [ngClass]="{ 'is-invalid': loginSend && usuario.errors }">
+                                <div *ngIf="usuario.errors" class="invalid-feedback">
+                                    <div *ngIf="usuario.errors.required">Email esta vacio!</div>
+                                    <div *ngIf="usuario.errors.email">Ingrese una direccion válida de email</div>
+                                </div>
+
+                            </div>
+                            <!--Input y Validacion usuario-->
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="Contraseña" id="password" formControlName="password" required [ngClass]="{ 'is-invalid': loginSend && password.errors }">
+                                <div *ngIf="password.errors" class="invalid-feedback">
+                                    <div *ngIf="password.errors.required">Contraseña esta vacio!</div>
+
+                                </div>
+                            </div>
+                            <!--Input y Validacion contraseña-->
+                            <!--Contraseña-->
+                            <div class="row align-items-center remember">
+                                <input type="checkbox">Recuerdame
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Iniciar Sesion" class="btn float-right login_btn">
+                            </div>
+                            <!--Boton Login-->
+                        </form>
+                        <!--Formulario Inicio de Sesion-->
+                    </div>
+                    <div class="card-footer">
+
+                        <div class="d-flex justify-content-center">
+                            <a href="#">¿Olvidaste tu Contraseña?</a>
+                        </div>
+                        <!--recuperar contraseña-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Ingresar-->
+        <div class="col-md-4">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card" id="registro">
+                    <div class="card-header">
+                        <h3>Registro de Usuario</h3>
+
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="checkoutFormRegister" (ngSubmit)="onSubmitRegister()">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" formControlName="user" placeholder="Nombre de Usuario" class="form-control" [ngClass]="{ 'is-invalid': registerSend && user.errors }">
+                                <div *ngIf="registerSend && user.errors" class="invalid-feedback">
+                                    <div *ngIf="user.errors.required">El nombre de usuario es requerido</div>
+                                </div>
+
+                            </div>
+                            <!--Input y Validacion nombre de usuario-->
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" class="form-control" formControlName="email" placeholder="ejemplo@ejemplo.com" [ngClass]="{ 'is-invalid': registerSend && email.errors }">
+                                <div *ngIf="registerSend && email.errors" class="invalid-feedback">
+                                    <div *ngIf="email.errors.required">Email es obligatorio</div>
+                                    <div *ngIf="email.errors.email">Debe ser una direccion email válida</div>
+                                </div>
+
+                            </div>
+                            <!--Input y Validacion email-->
+
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" formControlName="contra" class="form-control" placeholder="Contraseña" [ngClass]="{ 'is-invalid': registerSend && contra.errors }">
+                                <div *ngIf="registerSend && contra.errors" class="invalid-feedback">
+                                    <div *ngIf="contra.errors.required">Contraseña no puede estar vacio</div>
+                                    <div *ngIf="contra.errors.minlength">Debe tener al menos 8 caracteres</div>
+                                </div>
+                            </div>
+                            <!--Input y Validacion contraseña-->
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" formControlName="confcontra" placeholder="Confirme su contraseña" [ngClass]="{ 'is-invalid': registerSend && confcontra.errors }" />
+                                <div *ngIf="registerSend && confcontra.errors" class="invalid-feedback">
+                                    <div *ngIf="confcontra.errors.required">Contraseña no puede estar vacio</div>
+                                    <div *ngIf="confcontra.errors.mustMatch">Las contraseñas no coinciden</div>
+                                </div>
+                            </div>
+                            <!--Input y Validacion Confiramar contraseña-->
+
+                            <div class="row align-items-center remember">
+                                <input type="checkbox" formControlName="periodista" class="form-control">Es Usted Periodista?
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Registrarse" class="btn float-right login_btn">
+                            </div>
+                            <!--Boton Registrar-->
+                            <label>Nota: si es usted periodista un Administrador se contactará con usted para validad su identidad y otorgarle los permisos correpondientes</label>
+
+                        </form>
+                        <!--Formulario Registro-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Registro-->
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/inicio">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Contacto</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="containerfluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card text-white bg-dark mb-3" style="max-width: 28rem;">
+                    <div id="titulo" class="card-header text-center">Contacto</div>
+                    <div class="card-body">
+                        <form class="was-validated" [formGroup]="contactFormGroup" (ngSubmit)="addContact()">
+                            <label class="col-md-14 control-label" for="validationTextarea">E-Mail</label><br>
+                            <input type="email" class="form-control" formControlName="email" placeholder="Ingrese e-mail de contacto" required/>
+                            <div *ngIf="contactFormGroup.get('email').hasError('email') && contactFormGroup.get('email').touched">Ingresa un e-mail valido</div><br/>
+                            <label class="col-md-14 control-label">Objetivo del Contacto</label>
+                            <div class="mb-3">
+                                <select class="custom-select" formControlName="reason" required>
+                                    <option value="">--Seleccione la razón de contacto--</option>
+                                    <option value="1">Reclamo</option>
+                                    <option value="2">Opinión</option>
+                                    <option value="3">Consulta</option>
+                                    <option value="4">Sugerencia</option>
+                                    <option value="5">Otro</option>
+                                </select>
+                                <div *ngIf="contactFormGroup.get('reason').hasError('required') && contactFormGroup.get('reason').touched">Selecciona una razón de contacto</div><br/>
+                            </div>
+                            <label for="validationTextarea">Mensaje</label><br/>
+                            <textarea class="form-control" formControlName="message" placeholder="Escriba aqui su mensaje..." required></textarea>
+                            <div *ngIf="contactFormGroup.get('message').hasError('required') && contactFormGroup.get('message').touched">Por favor, escribe un mensaje</div><br/>
+                            <div class="col-md-14 control-label text-center">
+                                <button class="btn btn-warning" [disabled]="contactFormGroup.invalid" type="submit">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

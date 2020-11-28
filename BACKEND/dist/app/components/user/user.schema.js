@@ -10,3 +10,16 @@ const definition = {
 };
 const schema = new mongoose_1.Schema(definition);
 exports.default = mongoose_1.model('User', schema, 'Users');
+/*import { Schema, model } from "mongoose";
+
+const userSchema = new Schema({
+    nick: String,
+    nombre: String,
+    correo: String,
+    contraseña: String,
+    permiso: Number
+}, {
+    timestamps: true
+});
+
+export default model('User', userSchema, 'users');*/ 

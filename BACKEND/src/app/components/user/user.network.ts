@@ -1,11 +1,15 @@
-import express, { Request, Response, Router } from "express";
-import { User } from "../../models/user.model";
+import express, { NextFunction, Request, Response, Router } from "express";
+
 import responseModule from "../../modules/response.module";
 import userController from "./user.controller"
-
-
+import { User } from '../../models/user.model';
 
 const router: Router = express.Router();
+
+
+const jwt = require('jsonwebtoken');
+
+var userId;
 
 router.post('/add', async(req: Request, res: Response) => {
     const body: User = req.body;
@@ -18,6 +22,84 @@ router.post('/add', async(req: Request, res: Response) => {
     }
 });
 
+router.post('/signup', async (req: Request, res: Response) => {
+    const body: User = req.body;
+    try {
+        const result: User = await userController.addUser(body);
+        
+        const token = await jwt.sign({_id: result._id}, 'secretkey');
+        res.status(200).json({token});
+        responseModule.success(req, res, result, 201);
+    } catch (error) {
+        responseModule.error(req, res, "Error desconocido");
+    }
+
+		
+});
+
+router.post('/signin', async (req: Request, res: Response) => {
+    const body: User = req.body;
+
+    try {
+        const user = await userController.getUserByEmail(body.correo);
+        
+        if (!user) return res.status(401).send('El Correo no esta registrado!');
+        if (user.contraseña !== body.contraseña) return res.status(401).send('Contraseña Incorrecta');
+
+		const token = jwt.sign({_id: user._id}, 'secretkey');
+
+        return res.status(200).json({token});
+    } catch (error) {
+        responseModule.error(req, res, "Error desconocido");
+    }
+
+});
+
+router.get('/private-tasks', verifyToken, (req: Request, res: Response) => {
+    res.json([
+        {
+            _id: '1',
+            name: "task one",
+            description: 'asdadasd',
+            date: "2019-11-06T15:50:18.921Z"
+        },
+        {
+            _id: '2',
+            name: "task two",
+            description: 'asdadasd',
+            date: "2019-11-06T15:50:18.921Z"
+        },
+        {
+            _id: '3',
+            name: "task three",
+            description: 'asdadasd',
+            date: "2019-11-06T15:50:18.921Z"
+        },
+    ])
+});
+
+async function verifyToken(req: Request, res: Response, next: NextFunction) {
+	try {
+		if (!req.headers.authorization) {
+			return res.status(401).send('Unauhtorized Request');
+		}
+		let token = req.headers.authorization.split(' ')[1];
+		if (token === 'null') {
+			return res.status(401).send('Unauhtorized Request');
+		}
+
+		const payload = await jwt.verify(token, 'secretkey');
+		if (!payload) {
+			return res.status(401).send('Unauhtorized Request');
+		}
+		userId = payload._id;
+		next();
+	} catch(e) {
+		//console.log(e)
+		return res.status(401).send('Unauhtorized Request');
+	}
+}
+
 router.get('/all', async(req: Request, res: Response) => {
     try {
         const result: User[] = await userController.getUsers();
@@ -27,8 +109,8 @@ router.get('/all', async(req: Request, res: Response) => {
     }
 });
 
-router.get('/id', async(req: Request, res: Response) => {
-    const _id: string = req.body;
+router.get('/id/:_id', async(req: Request, res: Response) => {
+    const _id: string = req.params._id;
     try {
         const result = await userController.getUserById(_id);
         responseModule.success(req, res, result);
@@ -37,7 +119,9 @@ router.get('/id', async(req: Request, res: Response) => {
     }
 });
 
-router.delete('/delete:_id', async(req: Request, res: Response) => {
+
+
+router.delete('/delete/:_id', async(req: Request, res: Response) => {
     const _id: string = req.body;
     try {
         const result = await userController.deleteUser(_id);

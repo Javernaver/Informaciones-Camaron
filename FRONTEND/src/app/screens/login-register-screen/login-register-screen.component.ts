@@ -36,6 +36,7 @@ export class LoginRegisterScreenComponent implements OnInit {
     this.checkoutFormLogin = this.createFormGroupLogin();
     this.checkoutFormRegister = this.createFormGroupRegister();
    // this.periodista=false;
+   console.log(servicioLoginRegister.getUsuarioByEmail("kalzyfer77@gmail.com"));
   }
 
   createFormGroupLogin() {
@@ -113,6 +114,7 @@ export class LoginRegisterScreenComponent implements OnInit {
           localStorage.setItem('USERID', user2.getBasicProfile().getEmail());
           this.user1 = user2;
           console.log(this.USERID, this.user1.getBasicProfile().getName());
+          this.registerGoogle();
         },
         error => this.error = error,
         );
@@ -121,6 +123,25 @@ export class LoginRegisterScreenComponent implements OnInit {
     
   }
 
+  async registerGoogle(){
+    
+    let usuario: Partial<User> = {
+      nick: this.user1.getBasicProfile().getEmail() ,
+      correo: this.user1.getBasicProfile().getEmail() ,
+      contraseña: this.user1.getBasicProfile().getId() ,
+      nombre: this.user1.getBasicProfile().getName(),
+      permiso: 1
+    }
+    
+    try {
+      await this.servicioLoginRegister.addUsuario(usuario).toPromise();
+      alert("Se creo el Usuario!");
+    }
+    catch(error){
+      console.log("fallo :c", error);
+    }  
+
+  }
 
   async checkIfUserAuthenticated(): Promise<boolean> {
     // Initialize gapi if not done yet

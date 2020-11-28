@@ -36,6 +36,7 @@ router.get('/id/:_id', async(req: Request, res: Response) => {
     }
 });
 
+
 router.delete('/delete/:_id', async(req: Request, res: Response) => {
     const _id: string = req.params._id;
     try {

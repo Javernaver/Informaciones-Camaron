@@ -16,6 +16,8 @@ const express_1 = __importDefault(require("express"));
 const response_module_1 = __importDefault(require("../../modules/response.module"));
 const user_controller_1 = __importDefault(require("./user.controller"));
 const router = express_1.default.Router();
+const jwt = require('jsonwebtoken');
+var userId;
 router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     try {
@@ -26,6 +28,78 @@ router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         response_module_1.default.error(req, res, "Error desconocido");
     }
 }));
+router.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    try {
+        const result = yield user_controller_1.default.addUser(body);
+        const token = yield jwt.sign({ _id: result._id }, 'secretkey');
+        res.status(200).json({ token });
+        response_module_1.default.success(req, res, result, 201);
+    }
+    catch (error) {
+        response_module_1.default.error(req, res, "Error desconocido");
+    }
+}));
+router.post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = req.body;
+    try {
+        const user = yield user_controller_1.default.getUserByEmail(body.correo);
+        if (!user)
+            return res.status(401).send('El Correo no esta registrado!');
+        if (user.contraseña !== body.contraseña)
+            return res.status(401).send('Contraseña Incorrecta');
+        const token = jwt.sign({ _id: user._id }, 'secretkey');
+        return res.status(200).json({ token });
+    }
+    catch (error) {
+        response_module_1.default.error(req, res, "Error desconocido");
+    }
+}));
+router.get('/private-tasks', verifyToken, (req, res) => {
+    res.json([
+        {
+            _id: '1',
+            name: "task one",
+            description: 'asdadasd',
+            date: "2019-11-06T15:50:18.921Z"
+        },
+        {
+            _id: '2',
+            name: "task two",
+            description: 'asdadasd',
+            date: "2019-11-06T15:50:18.921Z"
+        },
+        {
+            _id: '3',
+            name: "task three",
+            description: 'asdadasd',
+            date: "2019-11-06T15:50:18.921Z"
+        },
+    ]);
+});
+function verifyToken(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            if (!req.headers.authorization) {
+                return res.status(401).send('Unauhtorized Request');
+            }
+            let token = req.headers.authorization.split(' ')[1];
+            if (token === 'null') {
+                return res.status(401).send('Unauhtorized Request');
+            }
+            const payload = yield jwt.verify(token, 'secretkey');
+            if (!payload) {
+                return res.status(401).send('Unauhtorized Request');
+            }
+            userId = payload._id;
+            next();
+        }
+        catch (e) {
+            //console.log(e)
+            return res.status(401).send('Unauhtorized Request');
+        }
+    });
+}
 router.get('/all', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield user_controller_1.default.getUsers();
@@ -35,8 +109,8 @@ router.get('/all', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         response_module_1.default.error(req, res, "Error desconocido");
     }
 }));
-router.get('/id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const _id = req.body;
+router.get('/id/:_id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const _id = req.params._id;
     try {
         const result = yield user_controller_1.default.getUserById(_id);
         response_module_1.default.success(req, res, result);
@@ -45,7 +119,7 @@ router.get('/id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         response_module_1.default.error(req, res, "Error Desconocido");
     }
 }));
-router.delete('/delete:_id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.delete('/delete/:_id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const _id = req.body;
     try {
         const result = yield user_controller_1.default.deleteUser(_id);

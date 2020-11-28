@@ -14,12 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_repository_1 = __importDefault(require("./user.repository"));
 function addUser(usuario) {
-    usuario.nombre = "John Doe";
+    if (!usuario.nombre) {
+        usuario.nombre = "John Doe";
+    }
     return user_repository_1.default.addUser(usuario);
 }
 function getUsers() {
     return __awaiter(this, void 0, void 0, function* () {
         return user_repository_1.default.getUsers();
+    });
+}
+function getUserByEmail(email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return user_repository_1.default.getUserByEmail(email);
     });
 }
 function getUserById(_id) {
@@ -32,4 +39,4 @@ function deleteUser(_id) {
         return user_repository_1.default.deleteUser(_id);
     });
 }
-exports.default = { addUser, getUsers, getUserById, deleteUser };
+exports.default = { addUser, getUsers, getUserById, getUserByEmail, deleteUser };

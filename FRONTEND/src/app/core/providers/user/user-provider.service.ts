@@ -14,7 +14,7 @@ export class UserProviderService {
   public getUsuarios(): Observable<User[]> {
     return this.httpService.get<User[]>('/user/all');
   }
-  
+
   public addUsuario(usuario: Partial<User>): Observable<User> {
     return this.httpService.post<User>('/user/add', usuario);
   }
@@ -22,6 +22,12 @@ export class UserProviderService {
   public getUsuarioById(id: string): Observable<User> {
     return this.getUsuarios().pipe(map((usuarios: User[]) => {
       return usuarios.find((usuario: User) => usuario._id === id);
+    }));
+  }
+
+  public getUsuarioByEmail(email: string): Observable<User> {
+    return this.getUsuarios().pipe(map((usuarios: User[]) => {
+      return usuarios.find((usuario: User) => usuario.correo === email);
     }));
   }
 

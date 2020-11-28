@@ -6,3 +6,4 @@ export interface User {
     correo: string;         /* Correo de usuario */
     permiso: number;        /* Nivel de permiso del usuario: 1=lector 2=periodista 3=administrador*/
 }
+

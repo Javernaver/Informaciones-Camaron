@@ -5,7 +5,8 @@ import { UserProviderService } from 'src/app/core/providers/user/user-provider.s
 import { MustMatch } from 'src/app/utilities/must-match.validator';
 import { environment } from 'src/environments/environment';
 import { User } from '../../core/models/user.model';
-
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,11 +33,14 @@ export class LoginRegisterScreenComponent implements OnInit {
   checkoutFormRegister: FormGroup;
 
 
-  constructor(private servicioLoginRegister: UserProviderService, private formBuilder: FormBuilder) { 
+  constructor(private servicioLoginRegister: UserProviderService,
+              private authService: AuthService,
+              private formBuilder: FormBuilder,
+              private router: Router ) {
     this.checkoutFormLogin = this.createFormGroupLogin();
     this.checkoutFormRegister = this.createFormGroupRegister();
    // this.periodista=false;
-   console.log(servicioLoginRegister.getUsuarioByEmail("kalzyfer77@gmail.com"));
+   
   }
 
   createFormGroupLogin() {
@@ -135,10 +139,10 @@ export class LoginRegisterScreenComponent implements OnInit {
     
     try {
       await this.servicioLoginRegister.addUsuario(usuario).toPromise();
-      alert("Se creo el Usuario!");
+      alert('Se creo el Usuario!');
     }
     catch(error){
-      console.log("fallo :c", error);
+      console.log('fallo :c', error);
     }  
 
   }
@@ -156,11 +160,36 @@ export class LoginRegisterScreenComponent implements OnInit {
 
   onSubmitLogin(){// para cuando le den al boton iniciar sesion
     this.loginSend= true;
-    this.usua.nick= this.usuario.value;
+    this.usua.correo= this.usuario.value;
     this.usua.contraseña= this.password.value;
 
     if (this.checkoutFormLogin.valid) { // si es formulario valido
-      console.log("usuario:", this.usua.nick, "con:", this.usua.contraseña);
+      console.log('usuario:', this.usua.correo, 'con:', this.usua.contraseña);
+
+      let usuario: Partial<User> = {
+        correo: this.usua.correo ,
+        contraseña: this.usua.contraseña
+      }
+      
+      try {
+        this.authService.signInUser(usuario).subscribe(
+          res => {
+            console.log(res);
+            localStorage.setItem('token', res.token);
+            this.router.navigate(['/inicio']);
+          },
+          err => {
+            console.log(err);
+            alert('Correo o Contraseña Incorrectos!');
+          }
+        );
+        //await this.servicioLoginRegister.addUsuario(usuario).toPromise();
+        //alert("Se logeo exitosamente!");
+      }
+      catch(error){
+        console.log('fallo :c', error);
+      } 
+
 
     }
   }
@@ -179,11 +208,22 @@ export class LoginRegisterScreenComponent implements OnInit {
       }
       
       try {
-        await this.servicioLoginRegister.addUsuario(usuario).toPromise();
-        alert("Se creo el Usuario!");
+        this.authService.signUpUser(usuario).subscribe(
+          res => {
+            console.log(res);
+            localStorage.setItem('token', res.token);
+            this.router.navigate(['/inicio']);
+          },
+          err => {
+            console.log(err);
+            alert('El Usuario ya esta registrado!');
+          }
+          );
+        //await this.servicioLoginRegister.addUsuario(usuario).toPromise();
+       // alert('Se creo el Usuario!');
       }
       catch(error){
-        console.log("fallo :c", error);
+        console.log('fallo :c', error);
       }  
       
     }
@@ -195,9 +235,9 @@ export class LoginRegisterScreenComponent implements OnInit {
     
     if (this.checkoutFormRegister.valid) { // si es formulario valido
       if (!this.periodista.value){
-        console.log("periodista falso");
+        console.log('periodista falso');
       }
-      console.log("user:", this.usua.nick, "email:", this.usua.correo, "contra:", this.contra.value, "contra2:", this.confcontra.value, this.periodista.value);
+      console.log('user:', this.usua.nick, 'email:', this.usua.correo, 'contra:', this.contra.value, 'contra2:', this.confcontra.value, this.periodista.value);
     }
  
   }

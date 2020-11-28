@@ -31,6 +31,10 @@ router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 router.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     try {
+        const user = yield user_controller_1.default.getUserByEmail(body.correo);
+        if (user) {
+            return res.status(401).send('El Correo ya esta utilizado!');
+        }
         const result = yield user_controller_1.default.addUser(body);
         const token = yield jwt.sign({ _id: result._id }, 'secretkey');
         res.status(200).json({ token });
@@ -55,7 +59,7 @@ router.post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, function*
         response_module_1.default.error(req, res, "Error desconocido");
     }
 }));
-router.get('/private-tasks', verifyToken, (req, res) => {
+router.get('/private-news', verifyToken, (req, res) => {
     res.json([
         {
             _id: '1',

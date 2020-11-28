@@ -25,6 +25,12 @@ router.post('/add', async(req: Request, res: Response) => {
 router.post('/signup', async (req: Request, res: Response) => {
     const body: User = req.body;
     try {
+        const user = await userController.getUserByEmail(body.correo);
+        
+        if (user) {
+            
+            return res.status(401).send('El Correo ya esta utilizado!');
+        }
         const result: User = await userController.addUser(body);
         
         const token = await jwt.sign({_id: result._id}, 'secretkey');
@@ -55,7 +61,7 @@ router.post('/signin', async (req: Request, res: Response) => {
 
 });
 
-router.get('/private-tasks', verifyToken, (req: Request, res: Response) => {
+router.get('/private-news', verifyToken, (req: Request, res: Response) => {
     res.json([
         {
             _id: '1',

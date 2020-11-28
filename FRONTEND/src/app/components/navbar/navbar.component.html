@@ -1,45 +1,53 @@
 <nav class="navbar navbar-expand-lg bd-navbar navbar-dark fixed-top">
     <a class="navbar-brand titleColor" href="/inicio">
-      <img src="{{iconUrl}}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-      Camaron
+        <img src="{{iconUrl}}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"> Camaron
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/inicio">Inicio <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="inicio/covid19">Coronavirus <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="inicio/nacional">Nacional</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="inicio/internacional">Internacional</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="inicio/deportes">Deportes</a>
-        </li>
-      </ul>
-      <div class="row pl-3">
-        <div class="col-12 text-right">
-            <a class="btn btn-primary btnCambioColor border border-dark" href="/inicio/newNoticia" role="button">Nueva Noticia</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/inicio">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="inicio/covid19">Coronavirus <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="inicio/nacional">Nacional</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="inicio/internacional">Internacional</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="inicio/deportes">Deportes</a>
+            </li>
+        </ul>
+        <div class="row pl-3">
+            <div class="col-12 text-right">
+                <a class="btn btn-primary btnCambioColor border border-dark" href="/inicio/newNoticia" role="button">Nueva Noticia</a>
+            </div>
         </div>
-    </div>
-      <form class="form-inline">
-        <a class="btn btn-primary btnCambioColor" href="inicio/loginRegister" role="button">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        .
+        <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+
+            <form class="form-inline">
+                <a class="btn btn-primary btnCambioColor" href="inicio/loginRegister" role="button">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg>
-          Iniciar Sesion  |  Registrar
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          </svg> Iniciar Sesion | Registrar
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
           </svg>
-        </a>
-      </form>
+                </a>
+            </form>
+        </ng-container>
+        <ng-template #loggedIn>
+            <li class="nav-item">
+                <a class="btn btn-primary btnCambioColor" role="button" (click)="authService.logout()">Cerrar Sesion</a>
+            </li>
+        </ng-template>
+
     </div>
 </nav>

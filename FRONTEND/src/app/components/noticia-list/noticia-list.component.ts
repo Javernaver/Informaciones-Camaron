@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Noticia } from 'src/app/core/models/noticia.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-noticia-list',
@@ -14,8 +15,10 @@ export class NoticiaListComponent implements OnInit {
   public categoria: string;
   @Input()
   public _id: string;
+  @Input()
+  public priv: number;
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }

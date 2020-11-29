@@ -13,6 +13,8 @@ import { ContactoScreenComponent } from './contacto-screen/contacto-screen.compo
 import { ScreensComponent } from './screens.component';
 import { AlterNoticiaScreenComponent } from './alter-noticia-screen/alter-noticia-screen.component';
 import { PeriodistaScreenComponent } from './periodista-screen/periodista-screen.component';
+import { PrivateNewsScreenComponent } from './private-news-screen/private-news-screen.component';
+import { AuthGuard } from '../services/auth.guard';
 
 const routes: Routes = [
   {
@@ -36,7 +38,8 @@ const routes: Routes = [
       {path: 'contacto', component: ContactoScreenComponent},
       {path: 'administrator', component: AdministratorScreenComponent},
       {path: 'alterNoticia/:id', component: AlterNoticiaScreenComponent},
-      {path: 'periodista', component: PeriodistaScreenComponent}
+      {path: 'periodista', component: PeriodistaScreenComponent},
+      {path: 'PrivateNews', component: PrivateNewsScreenComponent, canActivate: [AuthGuard]}
     ]
   }
 ];

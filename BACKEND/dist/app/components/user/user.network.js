@@ -59,28 +59,6 @@ router.post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, function*
         response_module_1.default.error(req, res, "Error desconocido");
     }
 }));
-router.get('/private-news', verifyToken, (req, res) => {
-    res.json([
-        {
-            _id: '1',
-            name: "task one",
-            description: 'asdadasd',
-            date: "2019-11-06T15:50:18.921Z"
-        },
-        {
-            _id: '2',
-            name: "task two",
-            description: 'asdadasd',
-            date: "2019-11-06T15:50:18.921Z"
-        },
-        {
-            _id: '3',
-            name: "task three",
-            description: 'asdadasd',
-            date: "2019-11-06T15:50:18.921Z"
-        },
-    ]);
-});
 function verifyToken(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

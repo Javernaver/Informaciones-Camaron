@@ -9,11 +9,13 @@ import { ContactProviderService } from './core/providers/contact/contact-provide
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './services/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { CategoryPrivateComponent } from './components/category-private/category-private.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,

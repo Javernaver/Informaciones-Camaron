@@ -35,6 +35,8 @@ import { AlterNoticiaScreenComponent } from './alter-noticia-screen/alter-notici
 import { PeriodistaScreenComponent } from './periodista-screen/periodista-screen.component';
 import { NoticiaListPeriodistaComponent } from '../components/noticia-list-periodista/noticia-list-periodista.component';
 import { AlterNoticiaComponent } from '../components/alter-noticia/alter-noticia.component';
+import { PrivateNewsScreenComponent } from './private-news-screen/private-news-screen.component';
+import { CategoryPrivateComponent } from '../components/category-private/category-private.component';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import { AlterNoticiaComponent } from '../components/alter-noticia/alter-noticia
     AlterNoticiaScreenComponent,
     PeriodistaScreenComponent,
     NoticiaListPeriodistaComponent,
-    AlterNoticiaComponent
+    AlterNoticiaComponent,
+    PrivateNewsScreenComponent,
+    CategoryPrivateComponent
   ],
   imports: [
     CommonModule,

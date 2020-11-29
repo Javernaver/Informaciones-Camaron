@@ -14,4 +14,4 @@ export interface Noticia {
     visitas: number;            /* Cantidad de visitas de la noticia */
     privado: number;            /* Privacidad de la noticia: 1=publico 2=privada */
     cantComentarios: number;    /* Cantidad de comentarios de la noticia */
-};
+}

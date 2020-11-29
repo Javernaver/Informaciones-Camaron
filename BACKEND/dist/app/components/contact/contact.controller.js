@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const contact_repository_1 = __importDefault(require("./contact.repository"));
 function addContact(contact) {
     contact.email = contact.email.toLowerCase();
-    contact.message = contact.message.toLowerCase();
     contact.createdAt = new Date();
     return contact_repository_1.default.addContact(contact);
 }
@@ -24,4 +23,9 @@ function getContacts() {
         return contact_repository_1.default.getContacts();
     });
 }
-exports.default = { addContact, getContacts };
+function deleteContact(_id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return contact_repository_1.default.deleteContact(_id);
+    });
+}
+exports.default = { addContact, getContacts, deleteContact };

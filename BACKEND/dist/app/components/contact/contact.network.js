@@ -35,4 +35,14 @@ router.get('/all', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         response_module_1.default.error(req, res, "Error desconocido");
     }
 }));
+router.delete('/delete/:_id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const _id = req.params._id;
+    try {
+        const result = yield contact_controller_1.default.deleteContact(_id);
+        response_module_1.default.success(req, res, result);
+    }
+    catch (error) {
+        response_module_1.default.error(req, res, "Error Desconocido");
+    }
+}));
 exports.default = router;

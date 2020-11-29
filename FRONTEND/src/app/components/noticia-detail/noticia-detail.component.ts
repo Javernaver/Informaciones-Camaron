@@ -28,4 +28,8 @@ export class NoticiaDetailComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
   }
 
+  recargar() {
+    window.location.reload();
+  }
+
 }

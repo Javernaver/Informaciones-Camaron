@@ -13,6 +13,9 @@ import { ContactoScreenComponent } from './contacto-screen/contacto-screen.compo
 import { ScreensComponent } from './screens.component';
 import { AlterNoticiaScreenComponent } from './alter-noticia-screen/alter-noticia-screen.component';
 import { PeriodistaScreenComponent } from './periodista-screen/periodista-screen.component';
+import { AlterNoticiaAdministratorScreenComponent } from './alter-noticia-administrator-screen/alter-noticia-administrator-screen.component';
+import { NoticiaAdministratorScreenComponent } from './noticia-administrator-screen/noticia-administrator-screen.component';
+import { NoticiaPeriodistaScreenComponent } from './noticia-periodista-screen/noticia-periodista-screen.component';
 import { PrivateNewsScreenComponent } from './private-news-screen/private-news-screen.component';
 import { AuthGuard } from '../services/auth.guard';
 
@@ -37,8 +40,11 @@ const routes: Routes = [
       {path: 'newNoticia', component: NewNoticiaScreenComponent},
       {path: 'contacto', component: ContactoScreenComponent},
       {path: 'administrator', component: AdministratorScreenComponent},
-      {path: 'alterNoticia/:id', component: AlterNoticiaScreenComponent},
+      {path: 'periodista/alterNoticia/:id', component: AlterNoticiaScreenComponent},
       {path: 'periodista', component: PeriodistaScreenComponent},
+      {path: 'administrator/alterNoticia/:id', component: AlterNoticiaAdministratorScreenComponent},
+      {path: 'administrator/noticia/:id', component: NoticiaAdministratorScreenComponent},
+      {path: 'periodista/noticia/:id', component: NoticiaPeriodistaScreenComponent},
       {path: 'PrivateNews', component: PrivateNewsScreenComponent, canActivate: [AuthGuard]}
     ]
   }

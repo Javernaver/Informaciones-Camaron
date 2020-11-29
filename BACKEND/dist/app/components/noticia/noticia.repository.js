@@ -23,7 +23,7 @@ function getNoticias() {
 }
 function getNoticiaById(_id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return noticia_schema_1.default.findById(_id);
+        return yield noticia_schema_1.default.findById(_id);
     });
 }
 function deleteNoticia(_id) {

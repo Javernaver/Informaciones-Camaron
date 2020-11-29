@@ -1,7 +1,30 @@
-<ul class = "list-group">
-    <li class="list-group-item" *ngFor = "let noticia of noticias">
-        {{noticia.createdAt | date: 'short'}} <br> {{noticia.titulo}} <br>
-        <a class="btn btnCambioColor border border-dark m-2" role="button" (click)="deleteNoticia(noticia._id, noticia.titulo)">Eliminar</a>
-        <a class="btn btnCambioColor border border-dark m-2" role="button" [routerLink]="['/inicio/alterNoticia', noticia._id]">Modificar</a>
-    </li>
-</ul>
+<div class="table-responsive text-center">
+    <table class="table" id="tabla">
+        <thead id="cabezera">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Fecha Creacion</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Estado Publicacion</th>
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor = "let noticia of noticias">
+                <tr>
+                    <th class="align-middle" scope="row">{{noticia._id}}</th>
+                    <td class="align-middle">{{noticia.createdAt | date: 'short'}}</td>
+                    <td class="align-middle">{{noticia.autor}}</td>
+                    <td class="align-middle">{{noticia.titulo}}</td>
+                    <td class="align-middle">{{noticia.estado}}</td>
+                    <td>
+                        <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/periodista/noticia', noticia._id]">Ver</a>
+                        <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/periodista/alterNoticia', noticia._id]">Modificar</a>
+                        <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" (click)="deleteNoticia(noticia._id, noticia.titulo)">Eliminar</a>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

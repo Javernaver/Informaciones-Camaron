@@ -12,7 +12,7 @@ const definition: Partial<Record<keyof Noticia, any>> = {
     autor: { type: String },
     createdAt: { type: Date },
     calificacion: { type: Number },
-    estado: { type: Number },
+    estado: { type: String },
     visitas: { type: Number },
     privado: { type: Number },
     cantComentarios: { type: Number }

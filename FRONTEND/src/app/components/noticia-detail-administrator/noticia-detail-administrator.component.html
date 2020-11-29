@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a id="migasPan" href="/inicio">Inicio</a></li>
+          <li class="breadcrumb-item"><a id="migasPan" href="/inicio/administrator">Administracion</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Noticia: {{noticia.titulo}}</li>
+        </ol>
+    </nav>
+</div>
+
+<div id="fondo" class="container-md">
+    <div class="row">
+        <div class="col-12">
+            <ng-container *ngIf='noticia.estado === "Aprobacion"'>
+                <div class="mt-2">
+                    <button class="btn btn-primary btnCambioColor float-right" (click)="approvalNoticia(noticia._id)">Aprobar Noticia</button>
+                </div>
+            </ng-container>
+            <div class="row text-center mt-5">
+                <div class="col">
+                    <h1>{{noticia.titulo}}</h1>
+                </div>
+            </div>
+            <div class="row mt-2 ">
+                <div class="col-12 text-right">
+                    <h5>Por: {{noticia.autor}} </h5> 
+                    <h5>Publicado: {{noticia.createdAt | date: 'short'}}</h5>
+                    <h5>Calificacion:  {{noticia.calificacion}} / 5</h5>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <ng-container *ngIf='noticia.imagenURL'>
+                        <img src="{{noticia.imagenURL}}" class=img-fluid>
+                    </ng-container>
+                    <ng-container *ngIf='noticia.videoURL'>
+                        <iframe width="100%" height="400" [src]="getVideoIframe(noticia.videoURL)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </ng-container>
+                    <ng-container *ngIf='noticia.audioURL'>
+                        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/191576787&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                        <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+                            <a href="https://soundcloud.com/levipatel" title="Levi Patel" target="_blank" style="color: #cccccc; text-decoration: none;"></a> 
+                            <a href="https://soundcloud.com/levipatel/as-she-passes" title="As she passes" target="_blank" style="color: #cccccc; text-decoration: none;"></a>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row mt-3 text-center">
+                <div class="col">
+                    <h3>{{noticia.entradilla}}</h3>
+                </div>
+            </div>
+            <div class="row mt-5 text-justify">
+                <div class="col">
+                    <h4 [innerHTML]="noticia.cuerpo">{{noticia.cuerpo}}</h4>
+                </div>
+            </div>
+            <div class="row mt-5 text-right">
+                <div class="col">
+                    <h5>Visitas: {{noticia.visitas}}</h5>
+                </div>
+            </div>
+            <div class="row m-5 border-top border-danger">
+                <div class="col">
+                    <p>Comentarios</p>
+                    <app-comentarios-screen></app-comentarios-screen>
+                </div>
+            </div>
+            <div class="row m-5 text-center border-top border-danger">
+                <div class="col mt-3">
+                    <p>Noticias Relacionadas</p>
+                    <app-category categoria={{noticia.categoria}} _id={{noticia._id}} onclick="location.reload();"></app-category>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

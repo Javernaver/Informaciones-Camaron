@@ -7,72 +7,59 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <div *ngFor = "let noticia of noticias">
-        <div *ngIf = "noticia.categoria == 'Coronavirus' && noticia.visitas >= topVisitas">
-          <div *ngIf = "noticia.imagenURL">
-            <img src="{{noticia.imagenURL}}" class="d-block w-100" alt="Noticia Mas Vista Coronavirus">
-          </div>
-          <div *ngIf = "!noticia.imagenURL">
-            <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="Noticia Mas Vista Coronavirus">
-          </div>
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{noticia.titulo}}</h5>
-            <p>{{noticia.entradilla}}</p>
-            <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', noticia._id]">Ver Noticia</a>
-          </div>
-        <div ></div>
-        </div>
-      </div>  
-    </div>
-    <div class="carousel-item">
-      <div *ngFor = "let noticia of noticias">
-        <div *ngIf = "noticia.categoria == 'Nacional' && noticia.visitas >= topVisitas">
-          <div *ngIf = "noticia.imagenURL">
-            <img src="{{noticia.imagenURL}}" class="d-block w-100" alt="Noticia Mas Vista Nacional">
-          </div>
-          <div *ngIf = "!noticia.imagenURL">
-            <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="Noticia Mas Vista Nacional">
-          </div>
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{noticia.titulo}}</h5>
-            <p>{{noticia.entradilla}}</p>
-            <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', noticia._id]">Ver Noticia</a>
-          </div>
-        </div>
+      <h5>Coronavirus</h5>
+      <div *ngIf = "topNoticiasVisitas[0].imagenURL">
+        <img src="{{topNoticiasVisitas[0].imagenURL}}" class="d-block w-100" alt="topNoticiasVisitas[] Mas Vista Coronavirus">
       </div>
-    </div>  
+      <div *ngIf = "!topNoticiasVisitas[0].imagenURL">
+        <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="topNoticiasVisitas[] Mas Vista Coronavirus">
+      </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{topNoticiasVisitas[0].titulo}}</h5>
+        <p>{{topNoticiasVisitas[0].entradilla}}</p>
+        <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', topNoticiasVisitas[0]._id]">Ver Noticia</a>
+      </div>
+    </div> 
     <div class="carousel-item">
-      <div *ngFor = "let noticia of noticias">
-        <div *ngIf = "noticia.categoria == 'Internacional' && noticia.visitas >= topVisitas">
-          <div *ngIf = "noticia.imagenURL">
-            <img src="{{noticia.imagenURL}}" class="d-block w-100" alt="Noticia Mas Vista Internacional">
-          </div>
-          <div *ngIf = "!noticia.imagenURL">
-            <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="Noticia Mas Vista Internacional">
-          </div>
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{noticia.titulo}}</h5>
-            <p>{{noticia.entradilla}}</p>
-            <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', noticia._id]">Ver Noticia</a>
-          </div>
-        </div>
+      <h5>Nacional</h5>
+      <div *ngIf = "topNoticiasVisitas[1].imagenURL">
+        <img src="{{topNoticiasVisitas[1].imagenURL}}" class="d-block w-100" alt="topNoticiasVisitas[] Mas Vista Nacional">
+      </div>
+      <div *ngIf = "!topNoticiasVisitas[1].imagenURL">
+        <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="topNoticiasVisitas[] Mas Vista Nacional">
+      </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{topNoticiasVisitas[1].titulo}}</h5>
+        <p>{{topNoticiasVisitas[1].entradilla}}</p>
+        <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', topNoticiasVisitas[1]._id]">Ver Noticia</a>
+      </div>
+    </div> 
+    <div class="carousel-item">
+      <h5>Internacional</h5>
+      <div *ngIf = "topNoticiasVisitas[2].imagenURL">
+        <img src="{{topNoticiasVisitas[2].imagenURL}}" class="d-block w-100" alt="topNoticiasVisitas[] Mas Vista Internacional">
+      </div>
+      <div *ngIf = "!topNoticiasVisitas[2].imagenURL">
+        <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="topNoticiasVisitas[] Mas Vista Internacional">
+      </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{topNoticiasVisitas[2].titulo}}</h5>
+        <p>{{topNoticiasVisitas[2].entradilla}}</p>
+        <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', topNoticiasVisitas[2]._id]">Ver Noticia</a>
       </div>
     </div>
     <div class="carousel-item">
-      <div *ngFor = "let noticia of noticias">
-        <div *ngIf = "noticia.categoria == 'Deportes' && noticia.visitas >= topVisitas">
-          <div *ngIf = "noticia.imagenURL">
-            <img src="{{noticia.imagenURL}}" class="d-block w-100" alt="Noticia Mas Vista Deportes">
-          </div>
-          <div *ngIf = "!noticia.imagenURL">
-            <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="Noticia Mas Vista Deportes">
-          </div>
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{noticia.titulo}}</h5>
-            <p>{{noticia.entradilla}}</p>
-            <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', noticia._id]">Ver Noticia</a>
-          </div>
-        </div>
+      <h5>Deportes</h5>
+      <div *ngIf = "topNoticiasVisitas[3].imagenURL">
+        <img src="{{topNoticiasVisitas[3].imagenURL}}" class="d-block w-100" alt="topNoticiasVisitas[] Mas Vista Deportes">
+      </div>
+      <div *ngIf = "!topNoticiasVisitas[3].imagenURL">
+        <img src="https://www.flaticon.es/svg/static/icons/svg/2346/2346897.svg" class="rounded mx-auto d-block" alt="topNoticiasVisitas[] Mas Vista Deportes">
+      </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{topNoticiasVisitas[3].titulo}}</h5>
+        <p>{{topNoticiasVisitas[3].entradilla}}</p>
+        <a class="btn btn-primary btnCambioColor" [routerLink]="['/inicio/noticia/', topNoticiasVisitas[3]._id]">Ver Noticia</a>
       </div>
     </div>
   </div>

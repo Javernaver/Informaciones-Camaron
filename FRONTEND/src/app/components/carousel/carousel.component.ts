@@ -13,13 +13,13 @@ export class CarouselComponent implements OnInit {
   public noticias$: Observable<Noticia[]>;
 
   constructor(private noticiaProvider: NoticiaProviderService) {
-    this.noticias$ = this.getNoticias();
+    this.noticias$ = this.topNoticiasVisitas();
   }
   
   ngOnInit(): void {
   }
 
-  getNoticias(): Observable<Noticia[]> {
-    return this.noticiaProvider.getNoticias();
+  topNoticiasVisitas(): Observable<Noticia[]> {
+    return this.noticiaProvider.topNoticiaVisitas();
   }
 }

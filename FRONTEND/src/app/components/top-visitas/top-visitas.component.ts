@@ -10,10 +10,8 @@ import { Noticia } from 'src/app/core/models/noticia.model';
 export class TopVisitasComponent implements OnInit {
 
   @Input()
-  noticias: Noticia[];
-  topVisitas: number = 1000;
-  flagCoronavirus: boolean = true;
-
+  topNoticiasVisitas: Noticia[];
+  
   constructor() {
   }
 

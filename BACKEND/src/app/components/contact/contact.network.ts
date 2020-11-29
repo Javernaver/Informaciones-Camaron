@@ -26,4 +26,14 @@ router.get('/all', async(req: Request, res: Response) => {
     }
 });
 
+router.delete('/delete/:_id', async(req: Request, res: Response) => {
+    const _id: string = req.params._id;
+    try {
+        const result = await contactController.deleteContact(_id);
+        responseModule.success(req, res, result);
+    } catch (error) {
+        responseModule.error(req, res, "Error Desconocido");
+    }
+})
+
 export default router;

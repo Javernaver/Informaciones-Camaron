@@ -1,6 +1,18 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/inicio">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Periodista</li>
+        </ol>
+    </nav>
+</div>
+
+
+<div class="container-fluid">
+    <div class="text-center" id="head">Periodista</div>
+    <div class="row mt-2 text-center">
+        <div class="col-md-11 mx-auto mt-2 border-top border-danger">
+            <div class="text-left mt-2" id="sectionName">Noticias</div>
             <app-noticia-list-periodista [noticias] = "noticias$ | async"></app-noticia-list-periodista>
         </div>
     </div>

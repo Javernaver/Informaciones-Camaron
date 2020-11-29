@@ -27,7 +27,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactProviderService } from '../core/providers/contact/contact-provider.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from 'src/environments/environment';
 import { NoticiaListComponent } from '../components/noticia-list/noticia-list.component';
 import { NoticiaDetailComponent } from '../components/noticia-detail/noticia-detail.component';
 import { TopVisitasComponent } from '../components/top-visitas/top-visitas.component';
@@ -35,8 +34,16 @@ import { AlterNoticiaScreenComponent } from './alter-noticia-screen/alter-notici
 import { PeriodistaScreenComponent } from './periodista-screen/periodista-screen.component';
 import { NoticiaListPeriodistaComponent } from '../components/noticia-list-periodista/noticia-list-periodista.component';
 import { AlterNoticiaComponent } from '../components/alter-noticia/alter-noticia.component';
-import { PrivateNewsScreenComponent } from './private-news-screen/private-news-screen.component';
+import { NoticiaListAdministradorComponent } from '../components/noticia-list-administrador/noticia-list-administrador.component';
+import { AlterNoticiaAdministradorComponent } from '../components/alter-noticia-administrador/alter-noticia-administrador.component';
+import { AlterNoticiaAdministratorScreenComponent } from './alter-noticia-administrator-screen/alter-noticia-administrator-screen.component';
+import { NoticiaAdministratorScreenComponent } from './noticia-administrator-screen/noticia-administrator-screen.component';
+import { NoticiaDetailAdministratorComponent } from '../components/noticia-detail-administrator/noticia-detail-administrator.component';
+import { NoticiaPeriodistaScreenComponent } from './noticia-periodista-screen/noticia-periodista-screen.component';
+import { NoticiaDetailPeriodistaComponent } from '../components/noticia-detail-periodista/noticia-detail-periodista.component';
 import { CategoryPrivateComponent } from '../components/category-private/category-private.component';
+import { environment } from 'src/environments/environment';
+import { PrivateNewsScreenComponent } from './private-news-screen/private-news-screen.component';
 
 
 @NgModule({
@@ -70,8 +77,15 @@ import { CategoryPrivateComponent } from '../components/category-private/categor
     PeriodistaScreenComponent,
     NoticiaListPeriodistaComponent,
     AlterNoticiaComponent,
-    PrivateNewsScreenComponent,
-    CategoryPrivateComponent
+    NoticiaListAdministradorComponent,
+    AlterNoticiaAdministradorComponent,
+    AlterNoticiaAdministratorScreenComponent,
+    NoticiaAdministratorScreenComponent,
+    NoticiaDetailAdministratorComponent,
+    NoticiaPeriodistaScreenComponent,
+    NoticiaDetailPeriodistaComponent,
+    CategoryPrivateComponent,
+    PrivateNewsScreenComponent
   ],
   imports: [
     CommonModule,

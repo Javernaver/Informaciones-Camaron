@@ -32,7 +32,6 @@
                 <a class="btn btn-primary btnCambioColor border border-dark" href="/inicio/newNoticia" role="button">Nueva Noticia</a>
             </div>
         </div>
-        .
         <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
 
             <form class="form-inline">
@@ -47,9 +46,9 @@
             </form>
         </ng-container>
         <ng-template #loggedIn>
-            <li class="nav-item">
+            <div class="nav-item">
                 <a class="btn btn-primary btnCambioColor" role="button" (click)="authService.logout()">Cerrar Sesion</a>
-            </li>
+            </div>
         </ng-template>
 
     </div>

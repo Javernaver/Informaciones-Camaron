@@ -17,4 +17,8 @@ export class ContactProviderService {
   public addContact(contact: Partial<Contact>): Observable<Contact> {
     return this.httpService.post<Contact>('/contact/add', contact);
   }
+
+  public deleteContactById(_id: string): Observable<Contact> {
+    return this.httpService.delete<Contact>('/contact/delete/' + _id);
+  }
 }

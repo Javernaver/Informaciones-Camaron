@@ -1,4 +1,3 @@
-import { Noticia } from "../../models/noticia.model";
 import { User } from "../../models/user.model";
 import UserRepository from "./user.repository";
 

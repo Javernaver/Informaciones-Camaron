@@ -22,11 +22,11 @@
                             <div class="mb-3">
                                 <select class="custom-select" formControlName="reason" required>
                                     <option value="">--Seleccione la razón de contacto--</option>
-                                    <option value="1">Reclamo</option>
-                                    <option value="2">Opinión</option>
-                                    <option value="3">Consulta</option>
-                                    <option value="4">Sugerencia</option>
-                                    <option value="5">Otro</option>
+                                    <option value="Reclamo">Reclamo</option>
+                                    <option value="Opinion">Opinión</option>
+                                    <option value="Consultar">Consulta</option>
+                                    <option value="Sugerencia">Sugerencia</option>
+                                    <option value="Otro">Otro</option>
                                 </select>
                                 <div *ngIf="contactFormGroup.get('reason').hasError('required') && contactFormGroup.get('reason').touched">Selecciona una razón de contacto</div><br/>
                             </div>

@@ -17,7 +17,6 @@ function addNoticia(noticia) {
     noticia.autor = "Periodista de Prueba";
     noticia.createdAt = new Date();
     noticia.calificacion = 0;
-    noticia.estado = 3;
     noticia.visitas = 0;
     noticia.cantComentarios = 0;
     return noticia_repository_1.default.addNoticia(noticia);
@@ -42,4 +41,55 @@ function putNoticia(_id, noticia) {
         return noticia_repository_1.default.putNoticia(_id, noticia);
     });
 }
-exports.default = { addNoticia, getNoticias, getNoticiaById, deleteNoticia, putNoticia };
+function getNoticiaUpdateVisita(_id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const noticia = yield noticia_repository_1.default.getNoticiaById(_id);
+        noticia.visitas++;
+        noticia_repository_1.default.putNoticia(_id, noticia);
+        return noticia;
+    });
+}
+function topNoticiaVisita() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const noticias = yield noticia_repository_1.default.getNoticias();
+        let topNoticiaCoronavirus;
+        let topVisitasCoronavirus = 0;
+        let topNoticiaNacional;
+        let topVisitasNacional = 0;
+        let topNoticiaInternacional;
+        let topVisitasInternacional = 0;
+        let topNoticiaDeportes;
+        let topVisitasDeportes = 0;
+        var topVisitasNoticia;
+        for (let noticia of noticias) {
+            if (noticia.categoria === "Coronavirus" && noticia.visitas >= topVisitasCoronavirus) {
+                topNoticiaCoronavirus = noticia;
+                topVisitasCoronavirus = noticia.visitas;
+            }
+            if (noticia.categoria === "Nacional" && noticia.visitas >= topVisitasNacional) {
+                topNoticiaNacional = noticia;
+                topVisitasNacional = noticia.visitas;
+            }
+            if (noticia.categoria === "Internacional" && noticia.visitas >= topVisitasInternacional) {
+                topNoticiaInternacional = noticia;
+                topVisitasInternacional = noticia.visitas;
+            }
+            if (noticia.categoria === "Deportes" && noticia.visitas >= topVisitasDeportes) {
+                topNoticiaDeportes = noticia;
+                topVisitasDeportes = noticia.visitas;
+            }
+        }
+        topVisitasNoticia = [topNoticiaCoronavirus, topNoticiaNacional, topNoticiaInternacional, topNoticiaDeportes];
+        return topVisitasNoticia;
+    });
+}
+function putCalificacionNoticia(_id, caliNoticia) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let noticia = yield noticia_repository_1.default.getNoticiaById(_id);
+        noticia.calificacion = (Number(noticia.calificacion) + Number(caliNoticia.calificacion)) / 2;
+        noticia.calificacion = Number.parseFloat(noticia.calificacion.toFixed(2));
+        yield noticia_repository_1.default.putNoticia(_id, noticia);
+        return noticia;
+    });
+}
+exports.default = { addNoticia, getNoticias, getNoticiaById, deleteNoticia, putNoticia, getNoticiaUpdateVisita, topNoticiaVisita, putCalificacionNoticia };

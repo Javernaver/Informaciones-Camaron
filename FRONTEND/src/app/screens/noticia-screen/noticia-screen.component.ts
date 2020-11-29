@@ -22,6 +22,6 @@ export class NoticiaScreenComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.noticia$= this.noticiaService.getNoticiaById(this.id);
+    this.noticia$= this.noticiaService.getNoticiaUpdateVisita(this.id);
   }
 }

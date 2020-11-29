@@ -1,3 +1,26 @@
-<ul class="list-group">
-    <li class="list-group-item" *ngFor = "let contact of contacts">{{contact.createdAt | date: 'short'}} | {{contact.message}} | {{contact._id}}</li>
-</ul>
+<div class="table-responsive text-center">
+    <table class="table" id="tabla">
+        <thead id="cabezera">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Razon Contacto</th>
+                <th scope="col">Mensaje</th>
+                <th scope="col">Email</th>
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor = "let contact of contacts">
+                <tr>
+                    <th scope="row">{{contact._id}}</th>
+                    <td>{{contact.createdAt | date: 'short'}}</td>
+                    <td>{{contact.reason}}</td>
+                    <td>{{contact.message}}</td>
+                    <td>{{contact.email}}</td>
+                    <td class="btn btnCambioColor border border-dark m-2" role="button" id="btnEliminar" (click)="deleteContact(contact._id, contact.email)">Eliminar</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

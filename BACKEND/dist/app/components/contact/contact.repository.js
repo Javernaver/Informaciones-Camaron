@@ -21,4 +21,9 @@ function getContacts() {
         return contact_schema_1.default.find();
     });
 }
-exports.default = { addContact, getContacts };
+function deleteContact(_id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return contact_schema_1.default.findByIdAndDelete(_id);
+    });
+}
+exports.default = { addContact, getContacts, deleteContact };

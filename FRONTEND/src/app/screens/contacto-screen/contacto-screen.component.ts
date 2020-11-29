@@ -29,6 +29,7 @@ export class ContactoScreenComponent implements OnInit {
     try {
       await this.contactProvider.addContact(contact).toPromise();
       alert("El ticket de contacto ha sido enviado, pronto un administrador se contactara por correo");
+      window.location.reload();
     } catch (error) {
       alert("El ticket no ha sido enviado, intente otra vez");
     }

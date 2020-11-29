@@ -10,4 +10,8 @@ async function getContacts(): Promise<Contact[]> {
     return contactSchema.find();
 }
 
-export default { addContact, getContacts };
+async function deleteContact(_id: string) {
+    return contactSchema.findByIdAndDelete(_id);
+}
+
+export default { addContact, getContacts, deleteContact };

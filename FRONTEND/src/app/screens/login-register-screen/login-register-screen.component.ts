@@ -1,12 +1,11 @@
-import { ResourceLoader } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators, ReactiveFormsModule, FormBuilder} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { UserProviderService } from 'src/app/core/providers/user/user-provider.service';
 import { MustMatch } from 'src/app/utilities/must-match.validator';
-import { environment } from 'src/environments/environment';
 import { User } from '../../core/models/user.model';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -204,7 +203,7 @@ export class LoginRegisterScreenComponent implements OnInit {
         nick: this.checkoutFormRegister.get('user').value ,
         correo: this.checkoutFormRegister.get('email').value ,
         contraseña: this.checkoutFormRegister.get('contra').value ,
-        permiso: 1
+        permiso: this.checkoutFormRegister.get('periodista').value
       }
       
       try {
@@ -212,6 +211,7 @@ export class LoginRegisterScreenComponent implements OnInit {
           res => {
             console.log(res);
             localStorage.setItem('token', res.token);
+            alert('Usuario registrado con exito!');
             this.router.navigate(['/inicio']);
           },
           err => {

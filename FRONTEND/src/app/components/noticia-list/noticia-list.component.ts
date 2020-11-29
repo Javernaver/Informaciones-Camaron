@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Noticia } from 'src/app/core/models/noticia.model';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-noticia-list',

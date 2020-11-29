@@ -1,14 +1,30 @@
-<form>
-	<p class="clasificacion">
-	  <input id="radio1" type="radio" name="estrellas" value="5"><!--
-	  --><label for="radio1">★</label><!--
-	  --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-	  --><label for="radio2">★</label><!--
-	  --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-	  --><label for="radio3">★</label><!--
-	  --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-	  --><label for="radio4">★</label><!--
-	  --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-	  --><label for="radio5">★</label>
-	</p>
-  </form>
+<div class= "container" id="body"><br>
+	<p class= "text-center">Califica la noticia</p>
+	<form [formGroup]="calificacionFormGroup" (ngSubmit)="calificar()">
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="opcion" id="opcion" formControlName="opcion" value=1>
+			<label class="form-check-label" for="exampleRadios1"><i class="fas fa-angry" id="angry"></i> La Odio</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="opcion" id="opcion" formControlName="opcion" value=2>
+			<label class="form-check-label" for="exampleRadios2"><i class="fas fa-frown" id="sad"></i> No me gusta</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="opcion" id="opcion" formControlName="opcion" value=3>
+			<label class="form-check-label" for="exampleRadios2"><i class="fas fa-meh" id="meh"></i> Me da igual</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="opcion" id="opcion" formControlName="opcion" value=4>
+			<label class="form-check-label" for="exampleRadios2"><i class="fas fa-smile" id="like"></i> Me gusta</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="opcion" id="opcion" formControlName="opcion" value=5>
+			<label class="form-check-label" for="exampleRadios2"><i class="fas fa-laugh" id="loveit"></i> Me encanta</label>
+		</div>
+		<br>
+		<div class="text-center">
+			<button class="btn btn-warning" [disabled]="calificacionFormGroup.invalid" type="submit">Calificar</button>
+		</div>
+	</form>
+	<br>
+</div>

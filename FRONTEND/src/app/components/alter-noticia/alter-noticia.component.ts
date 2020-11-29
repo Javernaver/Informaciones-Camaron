@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Noticia } from 'src/app/core/models/noticia.model';
 import { NoticiaProviderService } from 'src/app/core/providers/noticia/noticia-provider.service';
@@ -46,7 +46,7 @@ export class AlterNoticiaComponent implements OnInit {
     try {
       await this.alterNoticiaProvider.putNoticiaById(_id, noticia).toPromise();
       alert("La noticia ha sido modificada con exito");
-      location.assign('/inicio/periodista')
+      location.assign('/inicio/administrator')
     } catch (error) {
       alert("Error al modificar la noticia")
     }

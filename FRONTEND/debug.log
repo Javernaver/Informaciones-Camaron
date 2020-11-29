@@ -31,3 +31,13 @@
 [1126/163647.731:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 [1126/182926.430:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 [1126/235126.839:ERROR:file_io.cc(90)] ReadExactly: expected 36, observed 0
+[1127/021728.311:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1127/134130.784:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1127/142051.418:ERROR:file_io.cc(90)] ReadExactly: expected 36, observed 0
+[1127/142051.562:ERROR:file_io.cc(90)] ReadExactly: expected 36, observed 0
+[1127/143412.039:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1128/134522.624:ERROR:crash_report_database_win.cc(496)] failed to stat report
+[1128/135522.626:ERROR:crash_report_database_win.cc(496)] failed to stat report
+[1128/135522.626:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Jorge\AppData\Local\Google\Chrome\User Data\Crashpad\reports\37acb60f-c584-4a6d-8e61-22665a733581.dmp: El sistema no puede encontrar el archivo especificado. (0x2)
+[1128/135522.627:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1128/200601.385:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)

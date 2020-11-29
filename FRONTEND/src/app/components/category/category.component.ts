@@ -15,6 +15,7 @@ export class CategoryComponent implements OnInit {
   @Input()
   public _id: string;
   public noticias$: Observable<Noticia[]>;
+  
   constructor(private noticiaProvider: NoticiaProviderService) {
     this.noticias$ = this.getNoticias();
   }

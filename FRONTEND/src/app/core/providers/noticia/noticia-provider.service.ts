@@ -30,4 +30,16 @@ export class NoticiaProviderService {
   public putNoticiaById(_id: string, noticia: Partial<Noticia>): Observable<Noticia> {
     return this.httpService.put<Noticia>('/noticia/put/' + _id, noticia);
   }
+
+  public getNoticiaUpdateVisita(_id: string): Observable<Noticia> {
+    return this.httpService.get<Noticia>('/noticia/visitUpdate/' + _id);
+  }
+
+  public topNoticiaVisitas(): Observable<Noticia[]> {
+    return this.httpService.get<Noticia[]>('/noticia/topVisitas');
+  }
+
+  public putCalificacionNoticia(_id: string, noticia: Partial<Noticia>): Observable<Noticia> {
+    return this.httpService.put<Noticia>('/noticia/calification/' + _id, noticia);
+  }
 }

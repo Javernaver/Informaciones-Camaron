@@ -17,10 +17,13 @@ export class NoticiaListComponent implements OnInit {
   public _id: string;
   @Input()
   public limit: number;
+  @Input()
+  public inicio: boolean;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

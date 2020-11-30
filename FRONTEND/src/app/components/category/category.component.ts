@@ -16,6 +16,9 @@ export class CategoryComponent implements OnInit {
   public _id: string;
   @Input()
   public limit: number;
+  @Input()
+  public inicio: boolean;
+
   public noticias$: Observable<Noticia[]>;
   
   constructor(private noticiaProvider: NoticiaProviderService) {

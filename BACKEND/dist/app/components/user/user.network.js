@@ -32,8 +32,12 @@ router.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function*
     const body = req.body;
     try {
         const user = yield user_controller_1.default.getUserByEmail(body.correo);
+        const user1 = yield user_controller_1.default.getUserByNick(body.nick);
         if (user) {
             return res.status(401).send('El Correo ya esta utilizado!');
+        }
+        if (user1) {
+            return res.status(401).send('El Nick ya esta utilizado!');
         }
         const result = yield user_controller_1.default.addUser(body);
         const token = yield jwt.sign({ _id: result._id }, 'secretkey');
@@ -53,7 +57,7 @@ router.post('/signin', (req, res) => __awaiter(void 0, void 0, void 0, function*
         if (user.contraseña !== body.contraseña)
             return res.status(401).send('Contraseña Incorrecta');
         const token = jwt.sign({ _id: user._id }, 'secretkey');
-        return res.status(200).json({ token });
+        return res.status(200).json({ token, Usuario: user });
     }
     catch (error) {
         response_module_1.default.error(req, res, "Error desconocido");

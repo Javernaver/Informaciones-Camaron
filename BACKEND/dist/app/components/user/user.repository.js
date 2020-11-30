@@ -29,6 +29,14 @@ function getUserByEmail(correo) {
         });
     });
 }
+function getUserByNick(nick) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return user_schema_1.default.findOne({ nick: nick }, function (err, obj) {
+            if (err)
+                console.log(err);
+        });
+    });
+}
 function getUserById(_id) {
     return __awaiter(this, void 0, void 0, function* () {
         return user_schema_1.default.findById(_id);
@@ -39,4 +47,4 @@ function deleteUser(_id) {
         return user_schema_1.default.findByIdAndDelete(_id);
     });
 }
-exports.default = { addUser, getUsers, getUserById, getUserByEmail, deleteUser };
+exports.default = { addUser, getUsers, getUserById, getUserByEmail, getUserByNick, deleteUser };

@@ -29,6 +29,11 @@ function getUserByEmail(email) {
         return user_repository_1.default.getUserByEmail(email);
     });
 }
+function getUserByNick(nick) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return user_repository_1.default.getUserByNick(nick);
+    });
+}
 function getUserById(_id) {
     return __awaiter(this, void 0, void 0, function* () {
         return user_repository_1.default.getUserById(_id);
@@ -39,4 +44,4 @@ function deleteUser(_id) {
         return user_repository_1.default.deleteUser(_id);
     });
 }
-exports.default = { addUser, getUsers, getUserById, getUserByEmail, deleteUser };
+exports.default = { addUser, getUsers, getUserById, getUserByEmail, getUserByNick, deleteUser };

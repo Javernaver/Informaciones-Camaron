@@ -19,6 +19,10 @@ async function getUserByEmail(email:string) {
     return UserRepository.getUserByEmail(email);
 }
 
+async function getUserByNick(nick:string) {
+    return UserRepository.getUserByNick(nick);
+}
+
 async function getUserById(_id: string) {
     return UserRepository.getUserById(_id);
 }
@@ -27,4 +31,4 @@ async function deleteUser(_id: string) {
     return UserRepository.deleteUser(_id);
 }
 
-export default { addUser, getUsers, getUserById, getUserByEmail, deleteUser };
+export default { addUser, getUsers, getUserById, getUserByEmail, getUserByNick, deleteUser };

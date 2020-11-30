@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a id="migasPan" href="/inicio">Inicio</a></li>
-          <li class="breadcrumb-item"><a id="migasPan" href="/{{noticia.categoria}}">{{noticia.categoria}}</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{noticia.titulo}}</li>
+            <li class="breadcrumb-item"><a id="migasPan" href="/inicio">Inicio</a></li>
+            <li class="breadcrumb-item"><a id="migasPan" href="/{{noticia.categoria}}">{{noticia.categoria}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{noticia.titulo}}</li>
         </ol>
     </nav>
 </div>
@@ -20,9 +20,9 @@
                 </div>
                 <div class="row mt-2 ">
                     <div class="col-12 text-right">
-                        <h5>Por: {{noticia.autor}} </h5> 
+                        <h5>Por: {{noticia.autor}} </h5>
                         <h5>Publicado: {{noticia.createdAt | date: 'short'}}</h5>
-                        <h5>Calificacion:  {{noticia.calificacion}} / 5</h5>
+                        <h5>Calificacion: {{noticia.calificacion}} / 5</h5>
                     </div>
                 </div>
                 <div class="row mt-5">
@@ -36,7 +36,7 @@
                         <ng-container *ngIf='noticia.audioURL'>
                             <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/191576787&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
                             <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
-                                <a href="https://soundcloud.com/levipatel" title="Levi Patel" target="_blank" style="color: #cccccc; text-decoration: none;"></a> 
+                                <a href="https://soundcloud.com/levipatel" title="Levi Patel" target="_blank" style="color: #cccccc; text-decoration: none;"></a>
                                 <a href="https://soundcloud.com/levipatel/as-she-passes" title="As she passes" target="_blank" style="color: #cccccc; text-decoration: none;"></a>
                             </div>
                         </ng-container>
@@ -60,14 +60,14 @@
                 <div class="col-4 offset-md-5">
                     <div class="ml-3">
                         <div class="row">
-                            <app-qualifier [_id] = "noticia._id"></app-qualifier>
+                            <app-qualifier [_id]="noticia._id"></app-qualifier>
                         </div>
                     </div>
                 </div>
                 <div class="row m-5 border-top border-danger">
                     <div class="col">
                         <p>Comentarios</p>
-                        <app-comentarios-screen></app-comentarios-screen>
+                        <app-comentarios-screen [noti]=noticia></app-comentarios-screen>
                     </div>
                 </div>
                 <div class="row m-5 text-center border-top border-danger">

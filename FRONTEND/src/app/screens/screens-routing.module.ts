@@ -18,6 +18,7 @@ import { NoticiaAdministratorScreenComponent } from './noticia-administrator-scr
 import { NoticiaPeriodistaScreenComponent } from './noticia-periodista-screen/noticia-periodista-screen.component';
 import { PrivateNewsScreenComponent } from './private-news-screen/private-news-screen.component';
 import { AuthGuard } from '../services/auth.guard';
+import { MostCommentedComponent } from './most-commented/most-commented.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,8 @@ const routes: Routes = [
       {path: 'administrator/alterNoticia/:id', component: AlterNoticiaAdministratorScreenComponent},
       {path: 'administrator/noticia/:id', component: NoticiaAdministratorScreenComponent},
       {path: 'periodista/noticia/:id', component: NoticiaPeriodistaScreenComponent},
-      {path: 'PrivateNews', component: PrivateNewsScreenComponent, canActivate: [AuthGuard]}
+      {path: 'PrivateNews', component: PrivateNewsScreenComponent, canActivate: [AuthGuard]},
+      {path: 'MostCommented', component: MostCommentedComponent},
     ]
   }
 ];

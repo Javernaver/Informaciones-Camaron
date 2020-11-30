@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class NoticiaDetailComponent implements OnInit {
   
   @Input()
-  noticia: Noticia;
+  public noticia: Noticia;
   constructor(private _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {

@@ -26,10 +26,14 @@ router.post('/signup', async (req: Request, res: Response) => {
     const body: User = req.body;
     try {
         const user = await userController.getUserByEmail(body.correo);
+        const user1 = await userController.getUserByNick(body.nick);
         
-        if (user) {
-            
+        if (user) {           
             return res.status(401).send('El Correo ya esta utilizado!');
+        }
+
+        if (user1) {           
+            return res.status(401).send('El Nick ya esta utilizado!');
         }
         const result: User = await userController.addUser(body);
         
@@ -54,7 +58,7 @@ router.post('/signin', async (req: Request, res: Response) => {
 
 		const token = jwt.sign({_id: user._id}, 'secretkey');
 
-        return res.status(200).json({token});
+        return res.status(200).json({token, Usuario: user});
     } catch (error) {
         responseModule.error(req, res, "Error desconocido");
     }

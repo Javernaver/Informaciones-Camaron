@@ -117,13 +117,45 @@ export class LoginRegisterScreenComponent implements OnInit {
           localStorage.setItem('USERID', user2.getBasicProfile().getEmail());
           this.user1 = user2;
           console.log(this.USERID, this.user1.getBasicProfile().getName());
-          this.registerGoogle();
+          this.loginGoogle();
         },
         error => this.error = error,
         );
     });
 
     
+  }
+  
+  async loginGoogle() {
+
+    let usuario: Partial<User> = {
+      correo: this.user1.getBasicProfile().getEmail() ,
+      contraseña: this.user1.getBasicProfile().getId()
+    }
+    
+    try {
+      this.authService.signInUser(usuario).subscribe(
+        res => {
+          console.log(res);
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/inicio']);
+          
+          this.usuarioLogeado = res.Usuario;
+          console.log(this.usuarioLogeado);
+          localStorage.setItem('userLogged', this.usuarioLogeado._id);
+          
+        },
+        err => {
+          console.log(err);
+          this.registerGoogle();
+        }
+      );
+      //await this.servicioLoginRegister.addUsuario(usuario).toPromise();
+      //alert("Se logeo exitosamente!");
+    }
+    catch(error){
+      console.log('fallo :c', error);
+    }
   }
 
   async registerGoogle(){
@@ -137,8 +169,19 @@ export class LoginRegisterScreenComponent implements OnInit {
     }
     
     try {
-      await this.servicioLoginRegister.addUsuario(usuario).toPromise();
-      alert('Se creo el Usuario!');
+      this.authService.signUpUser(usuario).subscribe(
+        res => {
+          console.log(res);
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/inicio']);
+        },
+        err => {
+          console.log(err);
+          alert('El Usuario ya esta registrado!');
+        }
+        );
+      //await this.servicioLoginRegister.addUsuario(usuario).toPromise();
+     // alert('Se creo el Usuario!');
     }
     catch(error){
       console.log('fallo :c', error);
@@ -157,13 +200,15 @@ export class LoginRegisterScreenComponent implements OnInit {
 
   // FIN LOGIN GOOGLE
 
+  public usuarioLogeado;
+
   onSubmitLogin(){// para cuando le den al boton iniciar sesion
     this.loginSend= true;
     this.usua.correo= this.usuario.value;
     this.usua.contraseña= this.password.value;
 
     if (this.checkoutFormLogin.valid) { // si es formulario valido
-      console.log('usuario:', this.usua.correo, 'con:', this.usua.contraseña);
+      // console.log('usuario:', this.usua.correo, 'con:', this.usua.contraseña);
 
       let usuario: Partial<User> = {
         correo: this.usua.correo ,
@@ -176,6 +221,10 @@ export class LoginRegisterScreenComponent implements OnInit {
             console.log(res);
             localStorage.setItem('token', res.token);
             this.router.navigate(['/inicio']);
+            
+            this.usuarioLogeado = res.Usuario;
+            console.log(this.usuarioLogeado);
+            localStorage.setItem('userLogged', this.usuarioLogeado._id);
           },
           err => {
             console.log(err);
@@ -191,6 +240,10 @@ export class LoginRegisterScreenComponent implements OnInit {
 
 
     }
+  }
+
+  public getUserLogged(){
+    return this.usuarioLogeado;
   }
 
   // para cuando le den al boton registrar
@@ -251,4 +304,5 @@ export class LoginRegisterScreenComponent implements OnInit {
   get contra() { return this.checkoutFormRegister.get('contra'); }
   get confcontra() { return this.checkoutFormRegister.get('confcontra'); }
   get periodista() { return this.checkoutFormRegister.get('periodista'); }
+
 }

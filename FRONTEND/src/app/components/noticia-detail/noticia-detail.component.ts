@@ -14,6 +14,12 @@ export class NoticiaDetailComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('foo')) {
+      localStorage.setItem('foo', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('foo');
+    }
   }
 
   getVideoIframe(url: string) {

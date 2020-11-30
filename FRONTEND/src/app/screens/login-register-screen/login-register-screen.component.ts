@@ -39,7 +39,7 @@ export class LoginRegisterScreenComponent implements OnInit {
     this.checkoutFormLogin = this.createFormGroupLogin();
     this.checkoutFormRegister = this.createFormGroupRegister();
    // this.periodista=false;
-   
+   // localStorage.removeItem('USERID');
   }
 
   createFormGroupLogin() {
@@ -82,6 +82,7 @@ export class LoginRegisterScreenComponent implements OnInit {
     if (await this.checkIfUserAuthenticated()) {
       this.user1 = this.authInstance.currentUser.get();
     }
+    
   }
 
   // LOGIN CON GOOGLE
@@ -118,6 +119,7 @@ export class LoginRegisterScreenComponent implements OnInit {
           this.user1 = user2;
           console.log(this.USERID, this.user1.getBasicProfile().getName());
           this.loginGoogle();
+          this.router.navigate(['/inicio']);
         },
         error => this.error = error,
         );
@@ -132,18 +134,15 @@ export class LoginRegisterScreenComponent implements OnInit {
       correo: this.user1.getBasicProfile().getEmail() ,
       contraseña: this.user1.getBasicProfile().getId()
     }
-    
     try {
       this.authService.signInUser(usuario).subscribe(
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/inicio']);
-          
+          // this.router.navigate(['/inicio']);
           this.usuarioLogeado = res.Usuario;
           console.log(this.usuarioLogeado);
           localStorage.setItem('userLogged', this.usuarioLogeado._id);
-          
         },
         err => {
           console.log(err);
@@ -173,7 +172,7 @@ export class LoginRegisterScreenComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/inicio']);
+         // this.router.navigate(['/inicio']);
         },
         err => {
           console.log(err);

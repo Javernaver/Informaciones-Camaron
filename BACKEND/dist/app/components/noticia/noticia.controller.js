@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const noticia_repository_1 = __importDefault(require("./noticia.repository"));
 function addNoticia(noticia) {
-    noticia.autor = "Periodista de Prueba";
     noticia.createdAt = new Date();
     noticia.calificacion = 0;
     noticia.visitas = 0;
@@ -23,7 +22,7 @@ function addNoticia(noticia) {
 }
 function getNoticias() {
     return __awaiter(this, void 0, void 0, function* () {
-        return noticia_repository_1.default.getNoticias();
+        return (yield noticia_repository_1.default.getNoticias()).reverse();
     });
 }
 function getNoticiaById(_id) {
@@ -92,4 +91,30 @@ function putCalificacionNoticia(_id, caliNoticia) {
         return noticia;
     });
 }
-exports.default = { addNoticia, getNoticias, getNoticiaById, deleteNoticia, putNoticia, getNoticiaUpdateVisita, topNoticiaVisita, putCalificacionNoticia };
+function getNoticiasPublicas() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let noticias = yield noticia_repository_1.default.getNoticias();
+        let noticiasPublicas = noticias.map((noticia) => {
+            if (noticia.privado == 1 && noticia.estado === "Publicado") {
+                return noticia;
+            }
+        });
+        noticiasPublicas = noticiasPublicas.filter(Boolean);
+        noticiasPublicas.reverse();
+        return noticiasPublicas;
+    });
+}
+function getNoticiasPrivadas() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let noticias = yield noticia_repository_1.default.getNoticias();
+        let noticiasPrivadas = noticias.map((noticia) => {
+            if (noticia.privado == 2 && noticia.estado === "Publicado") {
+                return noticia;
+            }
+        });
+        noticiasPrivadas = noticiasPrivadas.filter(Boolean);
+        noticiasPrivadas.reverse();
+        return noticiasPrivadas;
+    });
+}
+exports.default = { addNoticia, getNoticias, getNoticiaById, deleteNoticia, putNoticia, getNoticiaUpdateVisita, topNoticiaVisita, putCalificacionNoticia, getNoticiasPublicas, getNoticiasPrivadas };

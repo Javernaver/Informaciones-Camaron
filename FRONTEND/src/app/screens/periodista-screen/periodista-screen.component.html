@@ -13,7 +13,7 @@
     <div class="row mt-2 text-center">
         <div class="col-md-11 mx-auto mt-2 border-top border-danger">
             <div class="text-left mt-2" id="sectionName">Noticias</div>
-            <app-noticia-list-periodista [noticias] = "noticias$ | async"></app-noticia-list-periodista>
+            <app-noticia-list-periodista [noticias] = "noticias$ | async" [usuario] = "usuario$ | async"></app-noticia-list-periodista>
         </div>
     </div>
 </div>

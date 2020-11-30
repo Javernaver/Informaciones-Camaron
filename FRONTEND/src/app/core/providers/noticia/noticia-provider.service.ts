@@ -42,4 +42,12 @@ export class NoticiaProviderService {
   public putCalificacionNoticia(_id: string, noticia: Partial<Noticia>): Observable<Noticia> {
     return this.httpService.put<Noticia>('/noticia/calification/' + _id, noticia);
   }
+
+  public getNoticiasPublicas(): Observable<Noticia[]> {
+    return this.httpService.get<Noticia[]>('/noticia/publico');
+  }
+
+  public getNoticiasPrivadas(): Observable<Noticia[]> {
+    return this.httpService.get<Noticia[]>('/noticia/privado');
+  }
 }

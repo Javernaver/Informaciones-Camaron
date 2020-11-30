@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class NoticiaDetailComponent implements OnInit {
   
   @Input()
-  public noticia: Noticia;
+  noticia: Noticia;
   constructor(private _sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -32,6 +32,10 @@ export class NoticiaDetailComponent implements OnInit {
     video   = (results === null) ? url : results[1];
  
     return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
+  }
+
+  getAudioIframe(url: string) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   recargar() {

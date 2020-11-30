@@ -20,7 +20,7 @@ function addContact(contact) {
 }
 function getContacts() {
     return __awaiter(this, void 0, void 0, function* () {
-        return contact_repository_1.default.getContacts();
+        return (yield contact_repository_1.default.getContacts()).reverse();
     });
 }
 function deleteContact(_id) {

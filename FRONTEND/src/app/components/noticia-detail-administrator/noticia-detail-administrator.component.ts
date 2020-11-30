@@ -31,6 +31,10 @@ export class NoticiaDetailAdministratorComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
   }
 
+  getAudioIframe(url: string) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
   public async approvalNoticia (_id: string) {
     let noticia: Partial<Noticia> = {
       estado: "Publicado"
@@ -45,44 +49,3 @@ export class NoticiaDetailAdministratorComponent implements OnInit {
     }
   }
 }
-
-/*
- public alterNoticiaFormGroup: FormGroup;
-
-  constructor(private alterNoticiaProvider: NoticiaProviderService, private _builder: FormBuilder) {
-    this.alterNoticiaFormGroup = this._builder.group({
-      titulo: ['', Validators.required],
-      entradilla: ['', Validators.required],
-      imagenURL: [''],
-      videoURL: [''],
-      audioURL: [''],
-      cuerpo: ['', Validators.required],
-      categoria: ['', Validators.required],
-      privado: ['', Validators.required]
-    })
-  }
-
-  ngOnInit(): void {
-  }
-
-  public async alterNoticia(_id: string) {
-    let noticia: Partial<Noticia> = {
-      titulo: this.alterNoticiaFormGroup.get('titulo').value,
-      entradilla: this.alterNoticiaFormGroup.get('entradilla').value,
-      imagenURL: this.alterNoticiaFormGroup.get('imagenURL').value,
-      videoURL: this.alterNoticiaFormGroup.get('videoURL').value,
-      audioURL: this.alterNoticiaFormGroup.get('audioURL').value,
-      cuerpo: this.alterNoticiaFormGroup.get('cuerpo').value,
-      categoria: this.alterNoticiaFormGroup.get('categoria').value,
-      privado: this.alterNoticiaFormGroup.get('privado').value
-    }
-
-    try {
-      await this.alterNoticiaProvider.putNoticiaById(_id, noticia).toPromise();
-      alert("La noticia ha sido modificada con exito");
-      location.assign('/inicio/periodista')
-    } catch (error) {
-      alert("Error al modificar la noticia")
-    }
-  }
-*/

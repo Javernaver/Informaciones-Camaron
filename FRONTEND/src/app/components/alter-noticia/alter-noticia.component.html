@@ -73,6 +73,16 @@
             </div>
         </div>
 
+        <div class="col-md-6 offset-md-3">
+            <label class="col-md-1 control-label">Publicacion</label>
+            <select class="custom-select"  formControlName="estado" required>
+                <option value="">--Seleccione el estado de publicacion de la noticia--</option>
+                <option value="Edicion">Guardar y No Publicar</option>
+                <option value="Aprobacion">Solicitar Publicacion</option>
+            </select>
+            <div id="errorTipeado" *ngIf="alterNoticiaFormGroup.get('estado').hasError('required') && alterNoticiaFormGroup.get('estado').touched">Debes seleccionar un estado de publicacion!</div>
+        </div>
+
         <div class="row">
             <div class="col-md-12 text-center">
                 <button class="btn btn-warning" [disabled]="alterNoticiaFormGroup.invalid" type="submit">Modificar Noticia</button>

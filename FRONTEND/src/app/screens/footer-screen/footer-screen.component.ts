@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-footer-screen',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer-screen.component.sass']
 })
 export class FooterScreenComponent implements OnInit {
+
+  @Input()
+  public user: User;
 
   constructor() { }
 

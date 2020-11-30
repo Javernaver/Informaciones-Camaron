@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Noticia } from 'src/app/core/models/noticia.model';
+import { User } from 'src/app/core/models/user.model';
 import { NoticiaProviderService } from 'src/app/core/providers/noticia/noticia-provider.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class NoticiaListPeriodistaComponent implements OnInit {
 
   @Input()
   noticias: Noticia[];
+  @Input()
+  usuario: User;
 
   constructor(private noticiaProvider: NoticiaProviderService) { }
 

@@ -46,7 +46,7 @@ export class AlterNoticiaAdministradorComponent implements OnInit {
     try {
       await this.alterNoticiaProvider.putNoticiaById(_id, noticia).toPromise();
       alert("La noticia ha sido modificada con exito");
-      location.assign('/inicio/periodista')
+      location.assign('/inicio/administrador')
     } catch (error) {
       alert("Error al modificar la noticia")
     }

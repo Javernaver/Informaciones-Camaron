@@ -18,7 +18,7 @@ import { NoticiaAdministratorScreenComponent } from './noticia-administrator-scr
 import { NoticiaPeriodistaScreenComponent } from './noticia-periodista-screen/noticia-periodista-screen.component';
 import { PrivateNewsScreenComponent } from './private-news-screen/private-news-screen.component';
 import { AuthGuard } from '../services/auth.guard';
-import { MostCommentedComponent } from './most-commented/most-commented.component';
+import { MostCommentedScreenComponent } from './most-commented-screen/most-commented-screen.component';
 
 const routes: Routes = [
   {
@@ -38,16 +38,16 @@ const routes: Routes = [
       {path: 'Deportes', component: DeportesScreenComponent},
       {path: 'loginRegister', component: LoginRegisterScreenComponent},
       {path: 'noticia/:id', component: NoticiaScreenComponent},
-      {path: 'newNoticia', component: NewNoticiaScreenComponent},
+      {path: 'newNoticia/:id', component: NewNoticiaScreenComponent},
       {path: 'contacto', component: ContactoScreenComponent},
       {path: 'administrator', component: AdministratorScreenComponent},
       {path: 'periodista/alterNoticia/:id', component: AlterNoticiaScreenComponent},
-      {path: 'periodista', component: PeriodistaScreenComponent},
+      {path: 'periodista/:id', component: PeriodistaScreenComponent},
       {path: 'administrator/alterNoticia/:id', component: AlterNoticiaAdministratorScreenComponent},
       {path: 'administrator/noticia/:id', component: NoticiaAdministratorScreenComponent},
       {path: 'periodista/noticia/:id', component: NoticiaPeriodistaScreenComponent},
       {path: 'PrivateNews', component: PrivateNewsScreenComponent, canActivate: [AuthGuard]},
-      {path: 'MostCommented', component: MostCommentedComponent},
+      {path: 'MostCommented', component: MostCommentedScreenComponent},
     ]
   }
 ];

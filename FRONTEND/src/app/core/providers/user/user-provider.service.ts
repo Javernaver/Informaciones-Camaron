@@ -31,5 +31,15 @@ export class UserProviderService {
     }));
   }
 
+  public deleteUsuarioById(_id: string): Observable<User> {
+    return this.httpService.delete<User>('/user/delete/'+ _id);
+  }
 
+  public updateUsuarioById(_id: string, user: Partial<User>): Observable<User> {
+    return this.httpService.put<User>('/user/put/' + _id, user);
+  }
+
+  public getUsuarioByID(_id: string): Observable<User> {
+    return this.httpService.get<User>('/user/id/' + _id);
+  }
 }

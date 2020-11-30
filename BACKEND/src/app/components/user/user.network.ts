@@ -38,8 +38,8 @@ router.post('/signup', async (req: Request, res: Response) => {
         const result: User = await userController.addUser(body);
         
         const token = await jwt.sign({_id: result._id}, 'secretkey');
-        res.status(200).json({token});
-        responseModule.success(req, res, result, 201);
+       return res.status(200).json({token, user: result});
+       // responseModule.success(req, res, result, 201);
     } catch (error) {
         responseModule.error(req, res, "Error desconocido");
     }
@@ -58,14 +58,12 @@ router.post('/signin', async (req: Request, res: Response) => {
 
 		const token = jwt.sign({_id: user._id}, 'secretkey');
 
-        return res.status(200).json({token, Usuario: user});
+        return res.status(200).json({token, user: user});
     } catch (error) {
         responseModule.error(req, res, "Error desconocido");
     }
 
 });
-
-
 
 async function verifyToken(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -108,10 +106,8 @@ router.get('/id/:_id', async(req: Request, res: Response) => {
     }
 });
 
-
-
 router.delete('/delete/:_id', async(req: Request, res: Response) => {
-    const _id: string = req.body;
+    const _id: string = req.params._id;
     try {
         const result = await userController.deleteUser(_id);
         responseModule.success(req, res, result);
@@ -119,6 +115,18 @@ router.delete('/delete/:_id', async(req: Request, res: Response) => {
         responseModule.error(req, res, "Error Desconocido");
     }
 })
+
+router.put('/put/:_id', async(req: Request, res: Response) => {
+    const _id: string = req.params._id;
+    const body: User = req.body;
+    try {
+        const result = await userController.putUser(_id, body);
+        responseModule.success(req, res, result);
+    } catch (error) {
+        responseModule.error(req, res, "Error Desconocido");
+    }
+})
+
 
 
 export default router;

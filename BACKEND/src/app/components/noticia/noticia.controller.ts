@@ -3,7 +3,6 @@ import NoticiaRepository from "./noticia.repository";
 
 
 function addNoticia(noticia: Noticia): Promise<Noticia> {
-    noticia.autor = "Periodista de Prueba";
     noticia.createdAt = new Date();
     noticia.calificacion = 0;
     noticia.visitas = 0;
@@ -13,7 +12,7 @@ function addNoticia(noticia: Noticia): Promise<Noticia> {
 }
 
 async function getNoticias(): Promise<Noticia[]> {
-    return NoticiaRepository.getNoticias();
+    return (await NoticiaRepository.getNoticias()).reverse();
 }
 
 async function getNoticiaById(_id: string): Promise<Noticia> {
@@ -80,5 +79,30 @@ async function putCalificacionNoticia(_id: string, caliNoticia: Noticia): Promis
     return noticia;
 }
 
+async function getNoticiasPublicas(): Promise<Noticia[]> {
+    let noticias: Noticia[] = await NoticiaRepository.getNoticias();
+    let noticiasPublicas: Noticia[] = noticias.map((noticia) => {
+        if(noticia.privado == 1 && noticia.estado === "Publicado") {
+            return noticia;
+        }
+    });
+    noticiasPublicas = noticiasPublicas.filter(Boolean);
+    noticiasPublicas.reverse();
 
-export default { addNoticia, getNoticias, getNoticiaById, deleteNoticia, putNoticia, getNoticiaUpdateVisita, topNoticiaVisita, putCalificacionNoticia };
+    return noticiasPublicas;
+}
+
+async function getNoticiasPrivadas(): Promise<Noticia[]> {
+    let noticias: Noticia[] = await NoticiaRepository.getNoticias();
+    let noticiasPrivadas: Noticia[] = noticias.map((noticia) => {
+        if(noticia.privado == 2 && noticia.estado === "Publicado") {
+            return noticia;
+        }
+    });
+    noticiasPrivadas = noticiasPrivadas.filter(Boolean);
+    noticiasPrivadas.reverse();
+
+    return noticiasPrivadas;
+}
+
+export default { addNoticia, getNoticias, getNoticiaById, deleteNoticia, putNoticia, getNoticiaUpdateVisita, topNoticiaVisita, putCalificacionNoticia, getNoticiasPublicas, getNoticiasPrivadas };

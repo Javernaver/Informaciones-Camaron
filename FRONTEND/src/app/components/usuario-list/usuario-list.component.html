@@ -1,0 +1,35 @@
+<div class="table-responsive text-center">
+    <table class="table" id="tabla">
+        <thead id="cabezera">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nick</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Permiso</th>
+                <th scope="col">Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor = "let usuario of usuarios">
+                <ng-container *ngIf = "usuario.permiso !== 3">
+                    <tr>
+                        <th scope="row">{{usuario._id}}</th>
+                        <td>{{usuario.nick}}</td>
+                        <td>{{usuario.correo}}</td>
+                        <td>
+                            <ng-container *ngIf = "!usuario.permiso">Usuario</ng-container>
+                            <ng-container *ngIf = "usuario.permiso == 1">Solicitud de Periodista</ng-container>
+                            <ng-container *ngIf = "usuario.permiso == 2">Periodista</ng-container>
+                        </td>
+                        <td>
+                            <ng-container *ngIf = "usuario.permiso == 1">
+                                <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" (click)="updateUser(usuario._id, usuario.nick)">Actualizar</a>
+                            </ng-container>
+                            <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" (click)="deleteUser(usuario._id, usuario.nick)">Eliminar</a>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

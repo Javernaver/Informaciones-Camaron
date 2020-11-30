@@ -41,3 +41,5 @@
 [1128/135522.626:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Jorge\AppData\Local\Google\Chrome\User Data\Crashpad\reports\37acb60f-c584-4a6d-8e61-22665a733581.dmp: El sistema no puede encontrar el archivo especificado. (0x2)
 [1128/135522.627:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 [1128/200601.385:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1130/011114.381:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1130/134359.831:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)

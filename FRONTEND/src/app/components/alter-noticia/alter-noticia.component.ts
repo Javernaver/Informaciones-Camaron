@@ -24,7 +24,8 @@ export class AlterNoticiaComponent implements OnInit {
       audioURL: [''],
       cuerpo: ['', Validators.required],
       categoria: ['', Validators.required],
-      privado: ['', Validators.required]
+      privado: ['', Validators.required],
+      estado: ['', Validators.required]
     })
 }
 
@@ -40,13 +41,14 @@ export class AlterNoticiaComponent implements OnInit {
       audioURL: this.alterNoticiaFormGroup.get('audioURL').value,
       cuerpo: this.alterNoticiaFormGroup.get('cuerpo').value,
       categoria: this.alterNoticiaFormGroup.get('categoria').value,
-      privado: this.alterNoticiaFormGroup.get('privado').value
+      privado: this.alterNoticiaFormGroup.get('privado').value,
+      estado: this.alterNoticiaFormGroup.get('estado').value,
     }
 
     try {
       await this.alterNoticiaProvider.putNoticiaById(_id, noticia).toPromise();
       alert("La noticia ha sido modificada con exito");
-      location.assign('/inicio/administrator')
+      location.assign('/inicio')
     } catch (error) {
       alert("Error al modificar la noticia")
     }

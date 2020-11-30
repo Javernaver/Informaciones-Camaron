@@ -27,7 +27,6 @@
                         <ng-template #noAprobado>
                             <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/administrator/noticia', noticia._id]">Ver & Aprobar</a>
                         </ng-template>
-                        
                         <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/administrator/alterNoticia', noticia._id]">Modificar</a>
                         <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" (click)="deleteNoticia(noticia._id, noticia.titulo)">Eliminar</a>
                     </td>

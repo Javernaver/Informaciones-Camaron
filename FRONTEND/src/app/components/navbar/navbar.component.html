@@ -27,11 +27,6 @@
                 <a class="nav-link" href="inicio/PrivateNews">Noticias Exclusivas</a>
             </li>
         </ul>
-        <div class="row pl-3">
-            <div class="col-12 text-right">
-                <a class="btn btn-primary btnCambioColor border border-dark" href="/inicio/newNoticia" role="button">Nueva Noticia</a>
-            </div>
-        </div>
         <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
 
             <form class="form-inline">
@@ -47,6 +42,15 @@
         </ng-container>
         <ng-template #loggedIn>
             <div class="nav-item">
+                <ng-container *ngIf = "user.permiso >= 2">
+                    <a class="btn btn-primary btnCambioColor mr-3" [routerLink]="['/inicio/newNoticia', user._id]" role="button">Nueva Noticia</a>
+                </ng-container>
+                <ng-container *ngIf = "user.permiso == 3">
+                    <a class="btn btnCambioColor mr-3" href="/inicio/administrator" role="button">Administrador</a>
+                </ng-container>
+                <ng-container *ngIf = "user.permiso == 2">
+                    <a class="btn btnCambioColor mr-3" [routerLink]="['/inicio/periodista', user._id]" role="button">Periodista</a>
+                </ng-container>
                 <a class="btn btn-primary btnCambioColor" role="button" (click)="authService.logout()">Cerrar Sesion</a>
             </div>
         </ng-template>

@@ -87,4 +87,22 @@ router.put('/calification/:_id', async(req: Request, res: Response) => {
     }
 });
 
+router.get('/publico', async(req: Request, res: Response) => {
+    try {
+        const result = await noticiaController.getNoticiasPublicas();
+        responseModule.success(req, res, result);
+    } catch (error) {
+        responseModule.error(req, res, "Error Desconocido");
+    }
+});
+
+router.get('/privado', async(req: Request, res: Response) => {
+    try {
+        const result = await noticiaController.getNoticiasPrivadas();
+        responseModule.success(req, res, result);
+    } catch (error) {
+        responseModule.error(req, res, "Error Desconocido");
+    }
+});
+
 export default router;

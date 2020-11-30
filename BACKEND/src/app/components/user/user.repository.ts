@@ -15,17 +15,21 @@ async function getUserByEmail(correo:string) {
         if (err) console.log(err); });
 }
 
+async function getUserById(_id: string) {
+    return userSchema.findById(_id);
+}
+
+async function deleteUser(_id: string): Promise<User> {
+    return userSchema.findByIdAndDelete(_id);
+}
+
+async function putUser(_id: string, user: User): Promise<User> {
+    return userSchema.findByIdAndUpdate(_id, user);
+}
+
 async function getUserByNick(nick:string) {
     return userSchema.findOne({nick: nick}, function(err,obj) { 
         if (err) console.log(err); });
 }
 
-async function getUserById(_id: string) {
-    return userSchema.findById(_id);
-}
-
-async function deleteUser(_id: string) {
-    return userSchema.findByIdAndDelete(_id);
-}
-
-export default { addUser, getUsers, getUserById, getUserByEmail, getUserByNick, deleteUser };
+export default { addUser, getUsers, getUserById, getUserByEmail, deleteUser, putUser, getUserByNick };

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MostCommentedComponent } from './most-commented.component';
+import { UsuarioListComponent } from './usuario-list.component';
 
-describe('MostCommentedComponent', () => {
-  let component: MostCommentedComponent;
-  let fixture: ComponentFixture<MostCommentedComponent>;
+describe('UsuarioListComponent', () => {
+  let component: UsuarioListComponent;
+  let fixture: ComponentFixture<UsuarioListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MostCommentedComponent ]
+      declarations: [ UsuarioListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MostCommentedComponent);
+    fixture = TestBed.createComponent(UsuarioListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

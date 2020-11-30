@@ -14,18 +14,16 @@ export class CategoryPrivateComponent implements OnInit {
   public categoria: string;
   @Input()
   public _id: string;
-  @Input()
-  public priv: number;
   
   public noticias$: Observable<Noticia[]>;
   constructor(private noticiaProvider: NoticiaProviderService) {
-    this.noticias$ = this.getNoticias();
+    this.noticias$ = this.getNoticiasPrivadas();
   }
 
   ngOnInit(): void {
   }
 
-  getNoticias(): Observable<Noticia[]> {
-    return this.noticiaProvider.getNoticias();
+  getNoticiasPrivadas(): Observable<Noticia[]> {
+    return this.noticiaProvider.getNoticiasPrivadas();
   }
 }

@@ -28,4 +28,8 @@ export class CardComponent implements OnInit {
  
     return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
   }
+
+  getAudioIframe(url: string) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 }

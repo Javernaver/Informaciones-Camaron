@@ -10,7 +10,7 @@ function addContact(contact: Contact): Promise<Contact> {
 }
 
 async function getContacts(): Promise<Contact[]> {
-    return contactRepository.getContacts();
+    return (await contactRepository.getContacts()).reverse();
 }
 
 async function deleteContact(_id: string) {

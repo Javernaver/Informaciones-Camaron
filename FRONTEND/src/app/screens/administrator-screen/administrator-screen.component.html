@@ -15,6 +15,10 @@
             <app-contacto-list [contacts] = "contact$ | async"></app-contacto-list>
         </div>
         <div class="col-md-11 mx-auto mt-2 border-top border-danger">
+            <div class="text-left mt-2" id="sectionName">Usuarios</div>
+            <app-usuario-list [usuarios] = "usuarios$ | async"></app-usuario-list>
+        </div>
+        <div class="col-md-11 mx-auto mt-2 border-top border-danger">
             <div class="text-left mt-2" id="sectionName">Noticias</div>
             <app-noticia-list-administrador [noticias] = "noticias$ | async"></app-noticia-list-administrador>
         </div>

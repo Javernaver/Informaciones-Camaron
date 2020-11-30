@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/user.model';
 import { AuthService } from '../../services/auth.service';
 
 
@@ -8,6 +9,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navbar.component.sass']
 })
 export class NavbarComponent {
+
+  @Input()
+  public user: User;
   public iconUrl: string;
 
   constructor(public authService: AuthService) {

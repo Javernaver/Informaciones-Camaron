@@ -30,6 +30,7 @@ export class LoginRegisterScreenComponent implements OnInit {
   
   checkoutFormLogin: FormGroup;
   checkoutFormRegister: FormGroup;
+  public usuarioLogeado: User;
 
 
   constructor(private servicioLoginRegister: UserProviderService,
@@ -39,7 +40,7 @@ export class LoginRegisterScreenComponent implements OnInit {
     this.checkoutFormLogin = this.createFormGroupLogin();
     this.checkoutFormRegister = this.createFormGroupRegister();
    // this.periodista=false;
-   // localStorage.removeItem('USERID');
+   
   }
 
   createFormGroupLogin() {
@@ -120,6 +121,7 @@ export class LoginRegisterScreenComponent implements OnInit {
           console.log(this.USERID, this.user1.getBasicProfile().getName());
           this.loginGoogle();
           this.router.navigate(['/inicio']);
+          // location.assign('/inicio');
         },
         error => this.error = error,
         );
@@ -140,13 +142,14 @@ export class LoginRegisterScreenComponent implements OnInit {
           console.log(res);
           localStorage.setItem('token', res.token);
           // this.router.navigate(['/inicio']);
-          this.usuarioLogeado = res.Usuario;
+          this.usuarioLogeado = res.user;
           console.log(this.usuarioLogeado);
           localStorage.setItem('userLogged', this.usuarioLogeado._id);
         },
         err => {
           console.log(err);
           this.registerGoogle();
+          //location.assign('/inicio');
         }
       );
       //await this.servicioLoginRegister.addUsuario(usuario).toPromise();
@@ -164,7 +167,7 @@ export class LoginRegisterScreenComponent implements OnInit {
       correo: this.user1.getBasicProfile().getEmail() ,
       contraseña: this.user1.getBasicProfile().getId() ,
       nombre: this.user1.getBasicProfile().getName(),
-      permiso: 1
+      permiso: null
     }
     
     try {
@@ -172,7 +175,9 @@ export class LoginRegisterScreenComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
-         // this.router.navigate(['/inicio']);
+          this.usuarioLogeado = res.user;
+          console.log(this.usuarioLogeado);
+          localStorage.setItem('userLogged', this.usuarioLogeado._id);
         },
         err => {
           console.log(err);
@@ -199,15 +204,12 @@ export class LoginRegisterScreenComponent implements OnInit {
 
   // FIN LOGIN GOOGLE
 
-  public usuarioLogeado;
-
   onSubmitLogin(){// para cuando le den al boton iniciar sesion
     this.loginSend= true;
     this.usua.correo= this.usuario.value;
     this.usua.contraseña= this.password.value;
 
     if (this.checkoutFormLogin.valid) { // si es formulario valido
-      // console.log('usuario:', this.usua.correo, 'con:', this.usua.contraseña);
 
       let usuario: Partial<User> = {
         correo: this.usua.correo ,
@@ -217,21 +219,17 @@ export class LoginRegisterScreenComponent implements OnInit {
       try {
         this.authService.signInUser(usuario).subscribe(
           res => {
-            console.log(res);
             localStorage.setItem('token', res.token);
-            this.router.navigate(['/inicio']);
-            
-            this.usuarioLogeado = res.Usuario;
-            console.log(this.usuarioLogeado);
+            this.usuarioLogeado = res.user;
             localStorage.setItem('userLogged', this.usuarioLogeado._id);
+            this.router.navigate(['/inicio']);
+            // location.assign('/inicio');
           },
           err => {
             console.log(err);
             alert('Correo o Contraseña Incorrectos!');
           }
         );
-        //await this.servicioLoginRegister.addUsuario(usuario).toPromise();
-        //alert("Se logeo exitosamente!");
       }
       catch(error){
         console.log('fallo :c', error);
@@ -239,10 +237,6 @@ export class LoginRegisterScreenComponent implements OnInit {
 
 
     }
-  }
-
-  public getUserLogged(){
-    return this.usuarioLogeado;
   }
 
   // para cuando le den al boton registrar
@@ -264,7 +258,10 @@ export class LoginRegisterScreenComponent implements OnInit {
             console.log(res);
             localStorage.setItem('token', res.token);
             alert('Usuario registrado con exito!');
+            this.usuarioLogeado = res.user;
+            localStorage.setItem('userLogged', this.usuarioLogeado._id);
             this.router.navigate(['/inicio']);
+            //location.assign('/inicio');
           },
           err => {
             console.log(err);
@@ -304,4 +301,7 @@ export class LoginRegisterScreenComponent implements OnInit {
   get confcontra() { return this.checkoutFormRegister.get('confcontra'); }
   get periodista() { return this.checkoutFormRegister.get('periodista'); }
 
+  public getUserLogin(): User {
+    return this.usuarioLogeado;
+  }
 }

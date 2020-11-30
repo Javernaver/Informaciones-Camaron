@@ -21,17 +21,12 @@ function addUser(usuario) {
 }
 function getUsers() {
     return __awaiter(this, void 0, void 0, function* () {
-        return user_repository_1.default.getUsers();
+        return (yield user_repository_1.default.getUsers()).reverse();
     });
 }
 function getUserByEmail(email) {
     return __awaiter(this, void 0, void 0, function* () {
         return user_repository_1.default.getUserByEmail(email);
-    });
-}
-function getUserByNick(nick) {
-    return __awaiter(this, void 0, void 0, function* () {
-        return user_repository_1.default.getUserByNick(nick);
     });
 }
 function getUserById(_id) {
@@ -44,4 +39,14 @@ function deleteUser(_id) {
         return user_repository_1.default.deleteUser(_id);
     });
 }
-exports.default = { addUser, getUsers, getUserById, getUserByEmail, getUserByNick, deleteUser };
+function putUser(_id, user) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return user_repository_1.default.putUser(_id, user);
+    });
+}
+function getUserByNick(nick) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return user_repository_1.default.getUserByNick(nick);
+    });
+}
+exports.default = { addUser, getUsers, getUserById, getUserByEmail, deleteUser, putUser, getUserByNick };

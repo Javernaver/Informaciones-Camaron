@@ -33,13 +33,14 @@ export class UsuarioListComponent implements OnInit {
     let user: Partial<User> = {
       permiso: 2
     }
-    if(confirm("¿Quieres darle permisos de Periodista a este usuario?\n" + nick))
-    try {
-      await this.userProvider.updateUsuarioById(_id, user).toPromise();
-      alert("Usuario ahora es Periodista");
-      window.location.reload();
-    } catch (error) {
-      alert("Error al actualizar el usuario");
+    if(confirm("¿Quieres darle permisos de Periodista a este usuario?\n" + nick)) {
+      try {
+        await this.userProvider.updateUsuarioById(_id, user).toPromise();
+        alert("Usuario ahora es Periodista");
+        window.location.reload();
+      } catch (error) {
+        alert("Error al actualizar el usuario");
+      }
     }
   }
 }

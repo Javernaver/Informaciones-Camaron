@@ -1,9 +1,11 @@
+<div class="text-left mt-2" id="sectionName">Noticias de {{usuario.nick}}</div>
 <div class="table-responsive text-center">
     <table class="table" id="tabla">
         <thead id="cabezera">
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Fecha Creacion</th>
+                <th scope="col">Categoria</th>
                 <th scope="col">Titulo</th>
                 <th scope="col">Estado Publicacion</th>
                 <th scope="col">Accion</th>
@@ -15,6 +17,7 @@
                     <tr>
                         <th class="align-middle" scope="row">{{noticia._id}}</th>
                         <td class="align-middle">{{noticia.createdAt | date: 'short'}}</td>
+                        <td class="align-middle">{{noticia.categoria}}</td>
                         <td class="align-middle">{{noticia.titulo}}</td>
                         <td class="align-middle">{{noticia.estado}}</td>
                         <td>

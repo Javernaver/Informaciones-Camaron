@@ -19,5 +19,4 @@ export class ScreensComponent implements OnInit {
     console.log(this.userId);
     this.user$ = this.userProvider.getUsuarioByID(this.userId);
   }
-
 }

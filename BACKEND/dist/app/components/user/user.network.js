@@ -42,7 +42,7 @@ router.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function*
         const result = yield user_controller_1.default.addUser(body);
         const token = yield jwt.sign({ _id: result._id }, 'secretkey');
         return res.status(200).json({ token, user: result });
-        // responseModule.success(req, res, result, 201);
+        //responseModule.success(req, res, result, 201);
     }
     catch (error) {
         response_module_1.default.error(req, res, "Error desconocido");

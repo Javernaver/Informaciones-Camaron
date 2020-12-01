@@ -5,6 +5,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Fecha Creacion</th>
                 <th scope="col">Autor</th>
+                <th scope="col">Categoria</th>
                 <th scope="col">Titulo</th>
                 <th scope="col">Estado Publicacion</th>
                 <th scope="col">Accion</th>
@@ -12,25 +13,26 @@
         </thead>
         <tbody>
             <ng-container *ngFor = "let noticia of noticias">
-                <tr>
-                    <th class="align-middle" scope="row">{{noticia._id}}</th>
-                    <td class="align-middle">{{noticia.createdAt | date: 'short'}}</td>
-                    <td class="align-middle">{{noticia.autor}}</td>
-                    <td class="align-middle">{{noticia.titulo}}</td>
-                    <td class="align-middle">{{noticia.estado}}
-
-                    </td>
-                    <td>
-                        <ng-container *ngIf = "noticia.estado !== 'Aprobacion'; else noAprobado">
-                            <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/administrator/noticia', noticia._id]">Ver</a>
-                        </ng-container>
-                        <ng-template #noAprobado>
-                            <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/administrator/noticia', noticia._id]">Ver & Aprobar</a>
-                        </ng-template>
-                        <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/administrator/alterNoticia', noticia._id]">Modificar</a>
-                        <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" (click)="deleteNoticia(noticia._id, noticia.titulo)">Eliminar</a>
-                    </td>
-                </tr>
+                <ng-container *ngIf = "noticia.estado != 'Edicion'">
+                    <tr>
+                        <th class="align-middle" scope="row">{{noticia._id}}</th>
+                        <td class="align-middle">{{noticia.createdAt | date: 'short'}}</td>
+                        <td class="align-middle">{{noticia.autor}}</td>
+                        <td class="align-middle">{{noticia.categoria}}</td>
+                        <td class="align-middle">{{noticia.titulo}}</td>
+                        <td class="align-middle">{{noticia.estado}}</td>
+                        <td>
+                            <ng-container *ngIf = "noticia.estado !== 'Aprobacion'; else noAprobado">
+                                <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/administrator/noticia', noticia._id]">Ver</a>
+                            </ng-container>
+                            <ng-template #noAprobado>
+                                <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/administrator/noticia', noticia._id]">Ver & Aprobar</a>
+                            </ng-template>
+                            <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" [routerLink]="['/inicio/administrator/alterNoticia', noticia._id]">Modificar</a>
+                            <a class="btn btnCambioColor border border-dark align-middle m-1" role="button" id="btnAccion" (click)="deleteNoticia(noticia._id, noticia.titulo)">Eliminar</a>
+                        </td>
+                    </tr>
+                </ng-container>
             </ng-container>
         </tbody>
     </table>

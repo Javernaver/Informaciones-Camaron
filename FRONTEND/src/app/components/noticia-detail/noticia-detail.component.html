@@ -28,13 +28,13 @@
                 <div class="row mt-5">
                     <div class="col text-center">
                         <ng-container *ngIf='noticia.imagenURL'>
-                            <img src="{{noticia.imagenURL}}" class=img-fluid>
+                            <img src="{{noticia.imagenURL}}" class=img-fluid><br>
                         </ng-container>
                         <ng-container *ngIf='noticia.videoURL'>
-                            <iframe width="100%" height="400" [src]="getVideoIframe(noticia.videoURL)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="100%" height="400" [src]="getVideoIframe(noticia.videoURL)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
                         </ng-container>
                         <ng-container *ngIf='noticia.audioURL'>
-                            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" [src]="getAudioIframe(noticia.audioURL)"></iframe>
+                            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" [src]="getAudioIframe(noticia.audioURL)"></iframe><br>
                         </ng-container>
                     </div>
                 </div>

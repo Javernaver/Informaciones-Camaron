@@ -17,3 +17,5 @@ Usuarios en Login:
   Periodista = correo: periodista@peri.com / contraseña: periodista
   Usuario = correo: usuario@user.com / contraseña: 123456789
   
+  **Se recomienda usar Firefox**
+  

@@ -1,15 +1,12 @@
 <div class="row m-3 d-flex justify-content-center">
-    <div *ngFor="let noticia of noticias ; let i = index;">
-        <ng-container *ngIf="noticia.categoria == categoria && noticia._id !== _id && !inicio">
-            <app-card [noticia]="noticia"></app-card>
+    <div *ngFor = "let noticia of noticias ; let i = index;">
+        <ng-container *ngIf = "noticia.categoria == categoria && noticia._id !== _id">
+            <app-card [noticia] = "noticia"></app-card>
         </ng-container>
-        <ng-container *ngIf="inicio && noticia.categoria == categoria && noticia._id !== _id && limit && i < limit ">
-            <app-card [noticia]="noticia"></app-card>
+        <ng-container *ngIf = "noticia.privado==2 && authService.loggedIn()">
+            <app-card [noticia] = "noticia"></app-card>
         </ng-container>
-        <ng-container *ngIf="noticia.privado==2 && authService.loggedIn()">
-            <app-card [noticia]="noticia"></app-card>
-        </ng-container>
-        <ng-container *ngIf="limit !== null && i < limit && !authService.loggedIn() && !inicio">
+        <ng-container *ngIf = "limit != null && i < limit">
             <app-card [noticia]="noticia"></app-card>
         </ng-container>
     </div>
